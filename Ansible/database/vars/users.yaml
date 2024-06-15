@@ -1,0 +1,30 @@
+---
+usuarios:
+  - nombre: david
+    grupos: admin, devops
+    contra: "{{ david_pass | password_hash('sha512') }}" 
+  
+  - nombre: nacho
+    grupos: admin, devops
+    contra: "{{ nacho_pass | password_hash('sha512') }}"
+
+  - nombre: pilar
+    grupos: developer, qa
+    contra: "{{ pilar_pass | password_hash('sha512') }}"
+
+  - nombre: elisa
+    grupos: developer, qa
+    contra: "{{ elisa_pass | password_hash('sha512') }}"
+
+  - nombre: pablo
+    grupos: developer, qa
+    contra: "{{ pablo_pass | password_hash('sha512') }}"
+
+  - nombre: rafa
+    grupos: devops, qa
+    contra: "{{ rafa_pass | password_hash('sha512') }}"
+
+  - nombre: luis
+    grupos: devops, qa
+    contra: "{{ luis_pass | password_hash('sha512') }}"
+...
