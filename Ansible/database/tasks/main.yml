@@ -32,7 +32,7 @@
     login_unix_socket: /var/run/mysqld/mysqld.sock
     host: localhost
     login_user: root
-    login_password: "{{root_password}}" #''
+    login_password: ''
     state: present
 
 - name: Create admin user with remote access
