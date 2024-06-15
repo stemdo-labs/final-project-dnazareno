@@ -2,5 +2,6 @@ ansible-playbook -i /home/vboxuser/Workspace/gitrepo/ansible-exercises-by-groups
 
 ssh-keygen -t rsa
 ssh-copy-id mv1user@104.46.47.132
+sudo apt update
 #sudo apt install ansible-core
 sudo apt install ansible
