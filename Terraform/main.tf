@@ -38,19 +38,33 @@ resource "azurerm_subnet" "azsbn2" {
   address_prefixes     = var.subnet_address_prefixes2
 }
 
+# resource "azurerm_subnet" "azsbn3" {
+#   name                 = var.weekly_subred3
+#   resource_group_name  = var.existent_resource_group_name
+#   virtual_network_name = azurerm_virtual_network.azvn.name
+#   address_prefixes     = var.subnet_address_prefixes3
+# }
+
 resource "azurerm_public_ip" "publicip" {
     name                    = "testPublicIP"
     location                = var.location
     resource_group_name     = var.existent_resource_group_name
-    allocation_method       = "Dynamic"
+    allocation_method       = "Static"
 }
 
 resource "azurerm_public_ip" "publicip2" {
     name                    = "testPublicIP2"
     location                = var.location
     resource_group_name     = var.existent_resource_group_name
-    allocation_method       = "Dynamic"
+    allocation_method       = "Static"
 }
+
+# resource "azurerm_public_ip" "publicip3" {
+#     name                    = "testPublicIP3"
+#     location                = var.location
+#     resource_group_name     = var.existent_resource_group_name
+#     allocation_method       = "Dynamic"
+# }
 
 resource "azurerm_network_security_group" "aznsc" {
   name                = var.weekly_secgroup
@@ -200,7 +214,7 @@ resource "azurerm_kubernetes_cluster" "example" {
     name            = "default"
     node_count      = 1
     vm_size         = "Standard_B2s"
-    # vnet_subnet_id  = azurerm_subnet.azsbn.id
+    # vnet_subnet_id  = azurerm_subnet.azsbn3.id
   }
 
   identity {
@@ -212,4 +226,10 @@ resource "azurerm_kubernetes_cluster" "example" {
   }
 }
 
-
+resource "azurerm_container_registry" "example" {
+  name                = "crdnazareno"
+  resource_group_name = var.existent_resource_group_name
+  location            = var.location
+  sku                 = "Basic"
+  admin_enabled       = true
+}
