@@ -53,6 +53,11 @@ variable "weekly_subred2" {
   default = "weekly_subred2"
 }
 
+variable "weekly_subred3" {
+  type = string
+  default = "weekly_subred3"
+}
+
 variable "weekly_secgroup" {
   type = string
   default = "weekly_secgroup"
@@ -76,6 +81,11 @@ variable "subnet_address_prefixes" {
 variable "subnet_address_prefixes2" {
   type = list(string)
   default = ["10.0.2.0/24"]
+}
+
+variable "subnet_address_prefixes3" {
+  type = list(string)
+  default = ["10.0.3.0/24"]
 }
 
 variable "nsc_secrule_name" {
