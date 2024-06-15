@@ -32,7 +32,7 @@
     login_unix_socket: /var/run/mysqld/mysqld.sock
     host: localhost
     login_user: root
-    login_password: ''
+    login_password: "{{root_password}}" #''
     state: present
 
 - name: Create admin user with remote access
@@ -52,7 +52,13 @@
     state: present
     login_user: root
     login_password: "{{root_password}}"
-    
+
+- name: add sample data to database  
+  copy: src=startquery.sql dest=/tmp/startquery.sql  
+  
+- name: insert sample data into database  
+  mysql_db: name=concierto state=import target=/tmp/startquery.sql login_user=root login_password="{{ root_password }}"   
+
 #- name: Enable remote login to mysql
 #  lineinfile:
 #    path: /etc/mysql/mysql.conf.d/mysqld.cnf
