@@ -21,6 +21,10 @@
      state: started
      enabled: yes
 
+- name: Cargar variables
+  include_vars:
+    file: vars.yaml
+
 - name: Set root user password
   mysql_user:
     name: root
