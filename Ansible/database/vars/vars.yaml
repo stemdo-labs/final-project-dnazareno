@@ -1,0 +1,6 @@
+---
+root_password: 1234
+admin_user: dnazareno
+admin_password: 1234
+db_name: concierto
+password_validation_policy: 1

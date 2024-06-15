@@ -1,0 +1,9 @@
+[grupodatabase]
+nodo1 ansible_host=104.46.47.132 ansible_user=mv1user ansible_become_password=123@Abc
+
+[gruporecovery]
+nodo2 ansible_host=104.46.33.204 ansible_user=mv2user ansible_become_password=123@Abc
+
+[grupomayor]
+nodo1 ansible_host=104.46.47.132 ansible_user=mv1user ansible_become_password=123@Abc
+nodo2 ansible_host=104.46.33.204 ansible_user=mv2user ansible_become_password=123@Abc
