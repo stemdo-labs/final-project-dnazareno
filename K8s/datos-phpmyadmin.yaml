@@ -1,0 +1,10 @@
+apiVersion: v1
+data:
+  DB_DATABASE: concierto
+  # DB_DATABASE_HOST: mariadb-service.laravel.svc.cluster.local
+  DB_DATABASE_HOST: 192.168.134.53
+  DB_DATABASE_PORT_NUMBER: "3306"
+  DB_DATABASE_USER: dnazareno
+kind: ConfigMap
+metadata:
+  name: datos-phpmyadmin
