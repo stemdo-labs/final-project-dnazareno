@@ -8,6 +8,6 @@ docker run --name mysql -e MYSQL_ROOT_PASSWORD=1234 -e MYSQL_DATABASE=concierto 
  
 docker run --name phpmyadmin -d --link mysql:db --network concert-network -p 8080:80 phpmyadmin
  
-docker run --name concert -p 8081:80 --network concert-network -d -e DB_DATABASE_HOST=mysql -e DB_DATABASE_USER=root -e DB_DATABASE_PASSWORD=1234 -e DB_DATABASE=concierto dboffelli/concert-app:1.0
+docker run --name concert -p 8081:80 -d -e DB_DATABASE_HOST=192.168.134.53 -e DB_DATABASE_USER=root -e DB_DATABASE_PASSWORD=1234 -e DB_DATABASE=concierto dboffelli/concert-app:1.0
 
 
