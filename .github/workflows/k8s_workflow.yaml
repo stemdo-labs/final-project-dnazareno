@@ -21,6 +21,15 @@ jobs:
         shell: bash
  
     steps:
+    - name: Connection to cluster and secret create
+      run: |
+        az aks get-credentials --resource-group ${{ vars.RESOURCE_GROUP_NAME }} --name ${{ vars.KUBERNETES_CLUSTER_NAME }}
+        kubectl create secret docker-registry regcred --docker-server=crdnazareno.azurecr.io --docker-username=${{ vars.CONTAINER_REGISTRY_USERNAME }} --docker-password=${{ secrets.CONTAINER_REGISTRY_PASSWORD }}
+
     # Checkout the repository to the GitHub Actions runner
     - name: Checkout
       uses: actions/checkout@v4
+
+    - name: Deploy
+      run: |
+        kubectl apply -f K8s/.
