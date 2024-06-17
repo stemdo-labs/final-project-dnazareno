@@ -53,14 +53,14 @@
     login_user: root
     login_password: "{{root_password}}"
     
-#- name: Enable remote login to mysql
-#  lineinfile:
-#    path: /etc/mysql/mysql.conf.d/mysqld.cnf
-#    regex: '^bind-address\s*=\s*127.0.0.1'
-#    line: 'bind-address = 0.0.0.0'
-#    backup: yes
-#  notify:
-#    - Restart mysql
+- name: Enable remote login to mysql
+  lineinfile:
+    path: /etc/mysql/mysql.conf.d/mysqld.cnf
+    regex: '^bind-address\s*=\s*127.0.0.1'
+    line: 'bind-address = 0.0.0.0'
+    backup: yes
+  notify:
+    - Restart mysql
 #
 #- name: Execute MySQL secure installation
 #  expect:
@@ -77,8 +77,8 @@
 #  environment:
 #    MYSQL_PWD: "{{ root_password }}"
 #
-#  handlers:
-#    - name: Restart mysql
-#      service:
-#        name: mysql
-#        state: restarted
+# handlers:
+# - name: Restart mysql
+#   service:
+#     name: mysql
+#     state: restarted
