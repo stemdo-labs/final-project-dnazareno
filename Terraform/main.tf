@@ -5,12 +5,12 @@ terraform {
       version = "3.102.0"
     }
   }
-  # backend "azurerm" {
-  #     resource_group_name  = "rg-dnazareno-dvfinlab"
-  #     storage_account_name = "sta1dnazareno"
-  #     container_name       = "tfstateweekly"
-  #     key                  = "terraform_weekly.tfstate"
-  # }
+  backend "azurerm" {
+      resource_group_name  = "rg-dnazareno-dvfinlab"
+      storage_account_name = "stadnazarenodvfinlab"
+      container_name       = "tfstatedvfinlab"
+      key                  = "terraform_dvfinlab.tfstate"
+  }
 }
 
 provider "azurerm" {
