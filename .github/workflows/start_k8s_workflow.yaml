@@ -1,0 +1,28 @@
+name: 'K8s Deploy'
+
+on:  workflow_dispatch
+  # push:
+  #   branches: [main]
+    
+jobs:
+  k8s:
+    name: 'K8s'
+    env:
+      ARM_CLIENT_ID: ${{ secrets.CLIENT_ID }}
+      ARM_CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
+      ARM_SUBSCRIPTION_ID: ${{ secrets.SUBSCRIPTION_ID }}
+      ARM_TENANT_ID: ${{ secrets.TENANT_ID }}
+      TF_VERSION: 1.5.7
+    runs-on: ubuntu-latest
+    environment: production
+ 
+    defaults:
+      run:
+        shell: bash
+ 
+    steps:
+    - name: Connection to cluster and secret create
+      run: |
+        az acr login --name ${{ vars.CONTAINER_REGISTRY_NAME }}
+        az aks get-credentials --resource-group ${{ vars.RESOURCE_GROUP_NAME }} --name ${{ vars.KUBERNETES_CLUSTER_NAME }}
+        kubectl create secret docker-registry regcred --docker-server=${{ vars.CONTAINER_REGISTRY_SERVER }} --docker-username=${{ vars.CONTAINER_REGISTRY_USERNAME }} --docker-password=${{ secrets.CONTAINER_REGISTRY_PASSWORD }}
