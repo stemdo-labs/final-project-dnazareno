@@ -16,6 +16,7 @@ jobs:
       run: |
         ssh-keygen -t rsa -N "" -f ~/.ssh/id_rsa
         sudo apt update
-        sudo apt install sshpass
+        sudo apt -y install sshpass
+        sudo apt -y install mysql-client-core-8.0
         sshpass -p "${{ secrets.VM1_PASS }}" ssh-copy-id vm1user@10.0.1.4
         ansible-playbook -i Ansible/inventario Ansible/database_playbook.yaml
