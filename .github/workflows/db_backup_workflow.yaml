@@ -16,6 +16,7 @@ jobs:
     steps:
     - name: Backup
       run: |
+        cd /
         namedate=$(date +'%Y%m%d%H%M%S')
         mysqldump -h ${{ vars.DB_HOST }} -u ${{ vars.DB_USER }} -p${{ secrets.DB_PASSWORD }} ${{ secrets.VM1_PASS }} > /backup-$namedate.sql
         tar -czvf backup-$namedate.tar.gz backup-$namedate.sql
