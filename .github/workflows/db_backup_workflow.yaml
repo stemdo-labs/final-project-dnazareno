@@ -1,0 +1,22 @@
+name: 'DB Backup'
+
+on:  workflow_dispatch
+  # push:
+  #   branches: [main]
+    
+jobs:
+  backup:
+    name: 'DB Backup'
+    runs-on: self-hosted
+ 
+    defaults:
+      run:
+        shell: bash
+ 
+    steps:
+    - name: Backup
+      run: |
+        namedate=$(date +'%Y%m%d%H%M%S')
+        mysqldump -h ${{ vars.DB_HOST }} -u ${{ vars.DB_USER }} -p${{ secrets.DB_PASSWORD }} ${{ secrets.VM1_PASS }} > /backup-$namedate.sql
+        tar -czvf backup-$namedate.tar.gz backup-$namedate.sql
+        azcopy copy 'backup-$namedate.tar.gz' 'https://${{ vars.STORAGE_ACCOUNT_NAME }}.blob.core.windows.net/${{ vars.AZ_CONTAINER_NAME }}/backup-$namedate.tar.gz
