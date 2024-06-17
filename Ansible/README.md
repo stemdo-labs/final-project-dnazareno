@@ -1,4 +1,7 @@
-ansible-playbook -i /home/mv2user/final-project-dnazareno/Ansible/inventario database_playbook.yaml
+ansible-galaxy init database
+ansible-galaxy init backup
+
+ansible-playbook -i inventario database_playbook.yaml --skip-tags initialquery,rootpassword
 
 ssh-keygen -t rsa
 ssh-copy-id mv1user@104.46.47.132
