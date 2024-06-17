@@ -34,17 +34,19 @@
     login_user: root
     login_password: ''
     state: present
+  tags:
+    - justonetime
 
-# - name: Create admin user with remote access
-#   mysql_user:
-#     name: "{{admin_user}}"
-#     password: "{{admin_password}}"
-#     priv: '*.*:ALL'
-#     host: '%'
-#     append_privs: yes
-#     login_user: root
-#     login_password: "{{root_password}}"
-#     state: present
+- name: Create admin user with remote access
+  mysql_user:
+    name: "{{admin_user}}"
+    password: "{{admin_password}}"
+    priv: '*.*:ALL'
+    host: '%'
+    append_privs: yes
+    login_user: root
+    login_password: "{{root_password}}"
+    state: present
     
 - name: creating database 
   mysql_db:
@@ -52,7 +54,8 @@
     state: present
     login_user: root
     login_password: "{{root_password}}"
-
+  tags:
+    - rootpassword
     
 - name: Enable remote login to mysql
   lineinfile:
@@ -63,13 +66,15 @@
   notify:
     - Restart mysql
 
-
 - name: add sample data to database  
   copy: src=startquery.sql dest=/tmp/startquery.sql  
-  
+  tags:
+    - initialquery
+
 - name: insert sample data into database  
   mysql_db: name=concierto state=import target=/tmp/startquery.sql login_user=root login_password="{{ root_password }}"   
-
+  tags:
+    - initialquery
 
 #
 #- name: Execute MySQL secure installation
