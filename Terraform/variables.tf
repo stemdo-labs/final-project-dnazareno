@@ -40,32 +40,27 @@ variable "maquinasvirtuales2" {
 
 variable "network_name" {
   type = string
-  default = "weekly_network"
+  default = "dnazareno_network"
 }
 
 variable "weekly_subred" {
   type = string
-  default = "weekly_subred"
+  default = "dnazareno_subred"
 }
 
 variable "weekly_subred2" {
   type = string
-  default = "weekly_subred2"
+  default = "dnazareno_subred2"
 }
 
 variable "weekly_subred3" {
   type = string
-  default = "weekly_subred3"
+  default = "dnazareno_subred3"
 }
 
 variable "weekly_secgroup" {
   type = string
-  default = "weekly_secgroup"
-}
-
-variable "weekly_lb" {
-  type = string
-  default = "weekly_lb"
+  default = "dnazareno_secgroup"
 }
 
 variable "vnet_address_space" {
@@ -88,54 +83,19 @@ variable "subnet_address_prefixes3" {
   default = ["10.0.3.0/24"]
 }
 
-variable "nsc_secrule_name" {
+variable "nic_name1" {
   type = string
-  default = "web"
+  default = "dnazareno_aznic1"
 }
 
-variable "nsc_secrule_priority" {
-  type = number
-  default = 1008
-}
-
-variable "nsc_secrule_access" {
+variable "nic_name2" {
   type = string
-  default = "Allow"
-}
-
-variable "nsc_secrule_protocol" {
-  type = string
-  default = "Tcp"
-}
-
-variable "nsc_secrule_source_port_range" {
-  type = string
-  default = "*"
-}
-
-variable "nsc_secrule_destination_port_range" {
-  type = string
-  default = "80"
-}
-
-variable "nsc_secrule_source_address_prefix" {
-  type = string
-  default = "*"
-}
-
-variable "nsc_secrule_destination_address_prefix" {
-  type = string
-  default = "10.0.1.0/24"
-}
-
-variable "nsc_secrule_direction" {
-  type = string
-  default = "Inbound"
+  default = "dnazareno_aznic2"
 }
 
 variable "nic_ip_name" {
   type = string
-  default = "ipconfig"
+  default = "dnazareno_ipconfig"
 }
 
 variable "nic_ip_private_ip_address_allocation" {
@@ -173,32 +133,97 @@ variable "vm_disk_storage_account_type" {
   default = "Standard_LRS"
 }
 
-variable "vm_ssh_public_key" {
-  type = string
-  default = "~/.ssh/id_rsa.pub"
-}
-
 variable "lb_sku" {
   type = string
   default = "Basic"
 }
 
-variable "lb_front_ip_name" {
-  type = string
-  default = "frontend-ip"
-}
-
-variable "lb_front_ip_private_ip_address_allocation" {
-  type = string
-  default = "Dynamic"
-}
-
-variable "lb_backend_address_pool_name" {
-  type = string
-  default = "test-pool"
-}
-
 variable "secret_password" {
   type = string
   default = "123@Abc"
+}
+
+variable "publicip_name1" {
+  type = string
+  default = "dnazareno_publicip1"
+}
+
+variable "publicip_allocation_method1" {
+  type = string
+  default = "Static"
+}
+
+variable "aks_name" {
+  type = string
+  default = "dnazarenoaks"
+}
+
+variable "aks_dns_prefix" {
+  type = string
+  default = "bootcampaks"
+}
+
+variable "aks_sku_tier" {
+  type = string
+  default = "Standard"
+}
+
+variable "aks_node_name" {
+  type = string
+  default = "default"
+}
+
+variable "aks_node_temporary_name" {
+  type = string
+  default = "rotation"
+}
+
+variable "aks_node_count" {
+  type = number
+  default = 1
+}
+
+variable "aks_node_vm_size" {
+  type = string
+  default = "Standard_B2s"
+}
+
+variable "aks_network_plugin" {
+  type = string
+  default = "azure"
+}
+
+variable "aks_network_service_cidr" {
+  type = string
+  default = "10.0.4.0/24"
+}
+
+variable "aks_network_dns_service_ip" {
+  type = string
+  default = "10.0.4.10"
+}
+
+variable "aks_identity_type" {
+  type = string
+  default = "SystemAssigned"
+}
+
+variable "aks_tags_environment" {
+  type = string
+  default = "Production"
+}
+
+variable "cr_name" {
+  type = string
+  default = "dnazarenocr"
+}
+
+variable "cr_sku" {
+  type = string
+  default = "Basic"
+}
+
+variable "cr_admin_enabled" {
+  type = bool
+  default = true
 }

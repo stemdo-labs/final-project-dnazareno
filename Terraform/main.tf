@@ -38,61 +38,25 @@ resource "azurerm_subnet" "azsbn2" {
   address_prefixes     = var.subnet_address_prefixes2
 }
 
-# resource "azurerm_subnet" "azsbn3" {
-#   name                 = var.weekly_subred3
-#   resource_group_name  = var.existent_resource_group_name
-#   virtual_network_name = azurerm_virtual_network.azvn.name
-#   address_prefixes     = var.subnet_address_prefixes3
-# }
-
-resource "azurerm_public_ip" "publicip" {
-    name                    = "testPublicIP"
-    location                = var.location
-    resource_group_name     = var.existent_resource_group_name
-    allocation_method       = "Static"
+resource "azurerm_subnet" "azsbn3" {
+  name                 = var.weekly_subred3
+  resource_group_name  = var.existent_resource_group_name
+  virtual_network_name = azurerm_virtual_network.azvn.name
+  address_prefixes     = var.subnet_address_prefixes3
 }
 
-resource "azurerm_public_ip" "publicip2" {
-    name                    = "testPublicIP2"
+resource "azurerm_public_ip" "publicip1" {
+    name                    = var.publicip_name1
     location                = var.location
     resource_group_name     = var.existent_resource_group_name
-    allocation_method       = "Static"
+    allocation_method       = var.publicip_allocation_method1
 }
-
-# resource "azurerm_public_ip" "publicip3" {
-#     name                    = "testPublicIP3"
-#     location                = var.location
-#     resource_group_name     = var.existent_resource_group_name
-#     allocation_method       = "Dynamic"
-# }
 
 resource "azurerm_network_security_group" "aznsc" {
   name                = var.weekly_secgroup
   location            = var.location
   resource_group_name = var.existent_resource_group_name
 
-  # security_rule {
-  #   name                       = var.nsc_secrule_name
-  #   priority                   = var.nsc_secrule_priority
-  #   direction                  = var.nsc_secrule_direction
-  #   access                     = var.nsc_secrule_access
-  #   protocol                   = var.nsc_secrule_protocol
-  #   source_port_range          = var.nsc_secrule_source_port_range
-  #   destination_port_range     = var.nsc_secrule_destination_port_range
-  #   source_address_prefix      = var.nsc_secrule_source_address_prefix
-  #   destination_address_prefix = var.nsc_secrule_destination_address_prefix
-  # }
-  security_rule {
-    name                       = "RDP"
-    priority                   = 1000
-    direction                  = "Inbound"
-    access                     = "Allow"
-    protocol                   = "*"
-    source_port_range          = "*"
-    destination_port_range     = "3389"
-    source_address_prefix      = "*"
-    destination_address_prefix = "*"
-  }
   security_rule {
     name                       = "web"
     priority                   = 1001
@@ -101,6 +65,17 @@ resource "azurerm_network_security_group" "aznsc" {
     protocol                   = "Tcp"
     source_port_range          = "*"
     destination_port_range     = "80"
+    source_address_prefix      = "*"
+    destination_address_prefix = "*"
+  }
+  security_rule {
+    name                       = "mysql"
+    priority                   = 1201
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "Tcp"
+    source_port_range          = "*"
+    destination_port_range     = "3306"
     source_address_prefix      = "*"
     destination_address_prefix = "*"
   }
@@ -118,26 +93,25 @@ resource "azurerm_network_security_group" "aznsc" {
 }
 
 resource "azurerm_network_interface" "aznic" {
-  name                = "aznic"
+  name                = var.nic_name1
   location            = var.location
   resource_group_name = var.existent_resource_group_name
   ip_configuration {
     name                          = var.nic_ip_name
     subnet_id                     = azurerm_subnet.azsbn.id
     private_ip_address_allocation = var.nic_ip_private_ip_address_allocation
-    public_ip_address_id          = azurerm_public_ip.publicip.id
   }
 }
 
 resource "azurerm_network_interface" "aznic2" {
-  name                = "aznic2"
+  name                = var.nic_name2
   location            = var.location
   resource_group_name = var.existent_resource_group_name
   ip_configuration {
     name                          = var.nic_ip_name
     subnet_id                     = azurerm_subnet.azsbn2.id
     private_ip_address_allocation = var.nic_ip_private_ip_address_allocation
-    public_ip_address_id          = azurerm_public_ip.publicip2.id
+    public_ip_address_id          = azurerm_public_ip.publicip1.id
   }
 }
 
@@ -204,32 +178,39 @@ resource "azurerm_linux_virtual_machine" "backup" {
 }
 
 resource "azurerm_kubernetes_cluster" "example" {
-  name                = "example-aks1"
+  name                = var.aks_name
   location            = var.location
   resource_group_name = var.existent_resource_group_name
-  dns_prefix          = "bootcampaks"
-  sku_tier            = "Standard"
+  dns_prefix          = var.aks_dns_prefix
+  sku_tier            = var.aks_sku_tier
 
   default_node_pool {
-    name            = "default"
-    node_count      = 1
-    vm_size         = "Standard_B2s"
-    # vnet_subnet_id  = azurerm_subnet.azsbn3.id
+    temporary_name_for_rotation = var.aks_node_temporary_name
+    name            = var.aks_name
+    node_count      = var.aks_node_count
+    vm_size         = var.aks_node_vm_size
+    vnet_subnet_id  = azurerm_subnet.azsbn3.id
+  }
+
+  network_profile {
+    network_plugin = var.aks_network_plugin
+    service_cidr = var.aks_network_service_cidr
+    dns_service_ip = var.aks_network_dns_service_ip
   }
 
   identity {
-    type = "SystemAssigned"
+    type = var.aks_identity_type
   }
 
   tags = {
-    Environment = "Production"
+    Environment = var.aks_tags_environment
   }
 }
 
 resource "azurerm_container_registry" "example" {
-  name                = "crdnazareno"
+  name                = var.cr_name
   resource_group_name = var.existent_resource_group_name
   location            = var.location
-  sku                 = "Basic"
-  admin_enabled       = true
+  sku                 = var.cr_sku
+  admin_enabled       = var.cr_admin_enabled
 }
