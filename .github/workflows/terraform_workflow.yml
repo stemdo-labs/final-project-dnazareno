@@ -1,8 +1,8 @@
 name: 'Terraform Apply'
 
-on:
-  push:
-    branches: [main]
+on:  workflow_dispatch
+  # push:
+  #   branches: [main]
     
 jobs:
   terraform:
@@ -30,11 +30,11 @@ jobs:
       with:
         tf_actions_version: ${{ env.TF_VERSION }}
         tf_actions_subcommand: 'init'
-        tf_actions_working_dir: "./soluciones/dnazareno-workload"
+        tf_actions_working_dir: "./Terraform"
 
     - name: 'Terraform Apply'
       uses: hashicorp/terraform-github-actions@master
       with:
         tf_actions_version: ${{ env.TF_VERSION }}
         tf_actions_subcommand: 'apply'
-        tf_actions_working_dir: "./soluciones/dnazareno-workload"
+        tf_actions_working_dir: "./Terraform"
