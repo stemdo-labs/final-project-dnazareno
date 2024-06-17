@@ -21,11 +21,14 @@ jobs:
         shell: bash
 # az acr login --name ${{ vars.CONTAINER_REGISTRY_NAME }} -u ${{ vars.CONTAINER_REGISTRY_USERNAME }} -p ${{ secrets.CONTAINER_REGISTRY_PASSWORD }} 
     steps:
-    - uses: azure/docker-login@v2
-      with:
-        login-server: ${{ vars.CONTAINER_REGISTRY_SERVER }} # default: index.docker.io
-        username: ${{ vars.CONTAINER_REGISTRY_USERNAME }}
-        password: ${{ secrets.CONTAINER_REGISTRY_PASSWORD }} 
+#    - uses: azure/docker-login@v2
+#      with:
+#        login-server: ${{ vars.CONTAINER_REGISTRY_SERVER }} # default: index.docker.io
+#        username: ${{ vars.CONTAINER_REGISTRY_USERNAME }}
+#        password: ${{ secrets.CONTAINER_REGISTRY_PASSWORD }} 
+
+    - name: Log in to Azure
+      uses: azure/login@v1
         
     - name: Connection to cluster and secret create
       run: |
