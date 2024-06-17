@@ -42,7 +42,7 @@ jobs:
       run: terraform -chdir=Terraform init
 
     - name: Terraform Plan
-      if: "${{ github.event.inputs.tf_option == 'plan' }}"    
+      # if: "${{ github.event.inputs.tf_option == 'plan' }}"    
       run: terraform -chdir=Terraform plan
 
     - name: Terraform Apply
