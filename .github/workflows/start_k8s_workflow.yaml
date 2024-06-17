@@ -13,12 +13,13 @@ jobs:
     defaults:
       run:
         shell: bash
-# az acr login --name ${{ vars.CONTAINER_REGISTRY_NAME }} -u ${{ vars.CONTAINER_REGISTRY_USERNAME }} -p ${{ secrets.CONTAINER_REGISTRY_PASSWORD }} 
+
     steps:
     
     - uses: azure/login@v2
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
+        
     - name: Connection to cluster and secret create
       run: |
         az acr login --name ${{ vars.CONTAINER_REGISTRY_NAME }}
