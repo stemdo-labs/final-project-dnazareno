@@ -35,7 +35,7 @@
     login_password: ''
     state: present
   tags:
-    - justonetime
+    - rootpassword
 
 - name: Create admin user with remote access
   mysql_user:
@@ -54,8 +54,6 @@
     state: present
     login_user: root
     login_password: "{{root_password}}"
-  tags:
-    - rootpassword
     
 - name: Enable remote login to mysql
   lineinfile:
