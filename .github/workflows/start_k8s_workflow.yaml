@@ -19,10 +19,16 @@ jobs:
     defaults:
       run:
         shell: bash
- 
+# az acr login --name ${{ vars.CONTAINER_REGISTRY_NAME }} -u ${{ vars.CONTAINER_REGISTRY_USERNAME }} -p ${{ secrets.CONTAINER_REGISTRY_PASSWORD }} 
     steps:
+    - uses: azure/docker-login@v2
+      with:
+        login-server: ${{ vars.CONTAINER_REGISTRY_SERVER }} # default: index.docker.io
+        username: ${{ vars.CONTAINER_REGISTRY_USERNAME }}
+        password: ${{ secrets.CONTAINER_REGISTRY_PASSWORD }} 
+        
     - name: Connection to cluster and secret create
       run: |
-        az acr login --name ${{ vars.CONTAINER_REGISTRY_NAME }} -u ${{ vars.CONTAINER_REGISTRY_USERNAME }} -p ${{ secrets.CONTAINER_REGISTRY_PASSWORD }}
+        
         az aks get-credentials --resource-group ${{ vars.RESOURCE_GROUP_NAME }} --name ${{ vars.KUBERNETES_CLUSTER_NAME }}
         kubectl create secret docker-registry regcred --docker-server=${{ vars.CONTAINER_REGISTRY_SERVER }} --docker-username=${{ vars.CONTAINER_REGISTRY_USERNAME }} --docker-password=${{ secrets.CONTAINER_REGISTRY_PASSWORD }}
