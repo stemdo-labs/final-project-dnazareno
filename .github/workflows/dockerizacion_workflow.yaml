@@ -14,16 +14,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Docker Login
-        uses: azure/docker-login@v1
+      - uses: azure/login@v2
         with:
-          login-server: ${{ vars.CONTAINER_REGISTRY_SERVER }}
-          username: ${{ vars.CONTAINER_REGISTRY_USERNAME }}
-          password: ${{ secrets.CONTAINER_REGISTRY_PASSWORD }}
- 
-      - name: Build and Push to ACR
-        uses: docker/build-push-action@v2
-        with:
-          push: true
-          tags: crdnazareno.azurecr.io/concert-app:1.0
-          file: concert-app/Dockerfile
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+          
