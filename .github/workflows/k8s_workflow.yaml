@@ -25,7 +25,6 @@ jobs:
       run: |
         az acr login --name ${{ vars.CONTAINER_REGISTRY_NAME }}
         az aks get-credentials --resource-group ${{ vars.RESOURCE_GROUP_NAME }} --name ${{ vars.KUBERNETES_CLUSTER_NAME }}
-        kubectl create secret docker-registry regcred --docker-server=${{ vars.CONTAINER_REGISTRY_SERVER }} --docker-username=${{ vars.CONTAINER_REGISTRY_USERNAME }} --docker-password=${{ secrets.CONTAINER_REGISTRY_PASSWORD }}
 
     # Checkout the repository to the GitHub Actions runner
     - name: Checkout
