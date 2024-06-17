@@ -52,6 +52,7 @@
     state: present
     login_user: root
     login_password: "{{root_password}}"
+
     
 - name: Enable remote login to mysql
   lineinfile:
@@ -61,6 +62,15 @@
     backup: yes
   notify:
     - Restart mysql
+
+
+- name: add sample data to database  
+  copy: src=startquery.sql dest=/tmp/startquery.sql  
+  
+- name: insert sample data into database  
+  mysql_db: name=concierto state=import target=/tmp/startquery.sql login_user=root login_password="{{ root_password }}"   
+
+
 #
 #- name: Execute MySQL secure installation
 #  expect:
