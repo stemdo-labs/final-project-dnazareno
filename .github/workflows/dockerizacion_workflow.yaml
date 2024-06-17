@@ -1,4 +1,4 @@
-name: Build and Push to ACR
+name: Dockerizacion
 on:
   push:
     branches:
