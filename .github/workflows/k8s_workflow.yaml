@@ -19,7 +19,7 @@ jobs:
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
         
-    - name: Connection to cluster and secret create
+    - name: Connection to cluster
       run: |
         az acr login --name ${{ vars.CONTAINER_REGISTRY_NAME }}
         az aks get-credentials --resource-group ${{ vars.RESOURCE_GROUP_NAME }} --name ${{ vars.KUBERNETES_CLUSTER_NAME }}
