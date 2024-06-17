@@ -1,4 +1,4 @@
-name: 'Terraform Apply'
+name: 'Terraform Ansible'
 
 on:  workflow_dispatch
   # push:
