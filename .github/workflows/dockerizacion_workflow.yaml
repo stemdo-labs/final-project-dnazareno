@@ -26,4 +26,4 @@ jobs:
         with:
           push: true
           tags: crdnazareno.azurecr.io/concert-app:1.0
-          file: Dockerizacion/Dockerfile
+          file: concert-app/Dockerfile
