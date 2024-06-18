@@ -1,0 +1,25 @@
+name: 'DB Backup'
+
+on: # workflow_dispatch
+  schedule:
+    - cron: "10,15,20,25 * * * *"
+    
+jobs:
+  backup:
+    name: 'DB Backup'
+    runs-on: self-hosted
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+    - uses: azure/login@v2
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+        
+    - name: Backup
+      run: |
+        namedate=$(date +'%Y%m%d%H%M%S')
+        mysqldump -h ${{ vars.DB_HOST }} -u ${{ vars.DB_USER }} -p${{ secrets.DB_PASSWORD }} ${{ vars.DB_NAME }} > backup-$namedate.sql
+        tar -czvf backup-$namedate.tar.gz backup-$namedate.sql
+        az storage blob upload --account-name stadnazarenodvfinlab --container-name dbbackup --name backup-$namedate.tar.gz --file backup-$namedate.tar.gz
