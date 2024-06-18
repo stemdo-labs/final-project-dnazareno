@@ -32,7 +32,7 @@ jobs:
       - name: Run markdown lint
         run: |
           npm install remark-cli remark-preset-lint-consistent vfile-reporter-json
-          npx remark . --use remark-preset-lint-consistent --report vfile-reporter-json 2
+          npx remark . --use remark-preset-lint-consistent --report vfile-reporter-json
           
       - name: Get version from package.json
         id: get_version
