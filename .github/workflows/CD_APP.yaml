@@ -5,6 +5,7 @@ on:
       - 'main'
     paths:
       - 'concert-app/**'
+      - 'K8s/**'
 jobs:     
   call-reusable-workflow:
     uses: ./.github/workflows/k8s_workflow.yaml
