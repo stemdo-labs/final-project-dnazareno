@@ -21,23 +21,15 @@ jobs:
         run: echo "version=$(jq -r .name concert-app/composer.json)" >> "$GITHUB_OUTPUT"
       - id: step2
         run: echo "version=$(jq -r .version concert-app/composer.json)" >> "$GITHUB_OUTPUT"
-  build:
+      - run: echo "$OUTPUT1 $OUTPUT2"
+  job2:
     runs-on: ubuntu-latest
-
-    outputs:
-      tag: ${{ steps.get_version.outputs.version }} #tag será un output
-      
+    needs: job1
     steps:
-
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Get version from package.json
-        id: get_version
-        run: | 
-          echo "version=$(jq -r .version concert-app/composer.json)"
-          echo "version=$(jq -r .version concert-app/composer.json)" >> $GITHUB_OUTPUT
-          echo $GITHUB_OUTPUT
+      - env:
+          OUTPUT1: ${{needs.job1.outputs.output1}}
+          OUTPUT2: ${{needs.job1.outputs.output2}}
+        run: echo "$OUTPUT1 $OUTPUT2"
           
   call-reusable-workflow:
     uses: ./.github/workflows/dockerizacion_workflow.yaml
