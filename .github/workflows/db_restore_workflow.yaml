@@ -1,4 +1,4 @@
-name: 'DB Backup'
+name: 'DB Restore'
 
 on:  workflow_dispatch
 
