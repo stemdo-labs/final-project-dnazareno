@@ -32,12 +32,7 @@ jobs:
       - name: Run markdown lint
         run: |
           npm install remark-cli remark-preset-lint-consistent vfile-reporter-json
-          npx remark . --use remark-preset-lint-consistent --report vfile-reporter-json 2> remark-lint-report.json
-
-      - uses: actions/upload-artifact@v3
-        with:
-          name: remark-lint-report
-          path: remark-lint-report.json
+          npx remark . --use remark-preset-lint-consistent --report vfile-reporter-json 2
           
       - name: Get version from package.json
         id: get_version
@@ -46,3 +41,9 @@ jobs:
           echo $GITHUB_OUTPUT
           
 
+  # call-reusable-workflow:
+  #   needs: build #para traer el output
+  #   uses: ./.github/workflows/dockerizacion_workflow.yaml
+  #   with:
+  #     tag: ${{ needs.build.outputs.tag }}
+  #   secrets: inherit
