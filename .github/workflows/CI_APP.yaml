@@ -7,7 +7,18 @@ on:
     paths:
       - 'concert-app/**'
       - 'K8s/**'
-jobs:     
+jobs:    
+  job1:
+    runs-on: ubuntu-latest
+    # Map a step output to a job output
+    outputs:
+      output1: ${{ steps.step1.outputs.test }}
+      output2: ${{ steps.step2.outputs.test }}
+    steps:
+      - id: step1
+        run: echo "version=$(jq -r .name concert-app/composer.json)" >> "$GITHUB_OUTPUT"
+      - id: step2
+        run: echo "version=$(jq -r .version concert-app/composer.json)" >> "$GITHUB_OUTPUT"
   build:
     runs-on: ubuntu-latest
 
@@ -22,11 +33,12 @@ jobs:
       - name: Get version from package.json
         id: get_version
         run: | 
-          echo "version=$(jq -r .version concert-app/composer.json)" >> "$GITHUB_OUTPUT"
+          echo "version=$(jq -r .version concert-app/composer.json)"
+          echo "version=$(jq -r .version concert-app/composer.json)" >> $GITHUB_OUTPUT
           echo $GITHUB_OUTPUT
           
   call-reusable-workflow:
     uses: ./.github/workflows/dockerizacion_workflow.yaml
     with:
-      tag: ${{ needs.build.outputs.tag }}
+      tag: ${{needs.job1.outputs.output2}}
     secrets: inherit
