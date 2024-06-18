@@ -5,7 +5,7 @@ on:
     branches: 
       - 'main'
     paths:
-      - 'concert-app/.'
+      - 'concert-app/**'
 jobs:     
   call-reusable-workflow:
     uses: ./.github/workflows/dockerizacion_workflow.yaml
