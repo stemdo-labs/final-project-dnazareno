@@ -22,7 +22,7 @@ spec:
           requests:
               memory: "200Mi" 
               cpu: "200m"
-        readinessProbe:
+        livenessProbe:
           exec:
             command:
             - ls
