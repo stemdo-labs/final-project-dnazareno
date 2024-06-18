@@ -18,5 +18,6 @@ jobs:
         sudo apt update
         sudo apt -y install sshpass
         sudo apt -y install mysql-client-core-8.0
+        curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
         sshpass -p "${{ secrets.VM1_PASS }}" ssh-copy-id vm1user@10.0.1.4
         ansible-playbook -i Ansible/inventario Ansible/database_playbook.yaml
