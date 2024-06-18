@@ -5,6 +5,7 @@ require_once("model/bd.php");
 
 // compruebo de primeras si la variable GET contiene información
 if(isset($_GET['controlador']) && !empty($_GET['controlador']) && isset($_GET['action']) && !empty($_GET['action'])){
+    
     // en el caso de que la variable GET controlador contenga algo, comprobamos qué es
     switch($_GET['controlador'])
     {
