@@ -10,7 +10,7 @@ on:
     
 jobs:
   backup:
-    name: 'DB Backup'
+    name: 'DB Restore'
     runs-on: self-hosted
     defaults:
       run:
@@ -21,7 +21,7 @@ jobs:
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
         
-    - name: Backup
+    - name: Restore
       run: |
         az storage blob download --account-name stadnazarenodvfinlab --container-name dbbackup --name {{ github.event.inputs.backup }}.tar.gz --file {{ github.event.inputs.backup }}.tar.gz
         tar -xzvf {{ github.event.inputs.backup }}.tar.gz {{ github.event.inputs.backup }}.sql
