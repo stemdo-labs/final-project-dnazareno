@@ -22,5 +22,5 @@ jobs:
         namedate=$(date +'%Y%m%d%H%M%S')
         mysqldump -h ${{ vars.DB_HOST }} -u ${{ vars.DB_USER }} -p${{ secrets.DB_PASSWORD }} ${{ vars.DB_NAME }} > backup.sql
         tar -czvf backup.tar.gz backup.sql
-        az storage blob upload --account-name stadnazarenodvfinlab --container-name dbbackup --name backup.tar.gz --file backup.tar.gz --auth-mode login
+        az storage blob upload --account-name stadnazarenodvfinlab --container-name dbbackup --name backup.tar.gz --file backup.tar.gz
 
