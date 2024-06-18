@@ -1,0 +1,13 @@
+name: CI APP
+on:
+  push:
+    branches: 
+      - 'main'
+    paths:
+      - 'concert-app/**'
+jobs:     
+  call-reusable-workflow:
+    uses: ./.github/workflows/k8s_workflow.yaml
+    with:
+      image-to-build: eperezstemdo/angulaimage:0.0.0-snapshot
+    secrets: inherit
