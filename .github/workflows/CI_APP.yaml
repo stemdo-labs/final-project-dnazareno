@@ -6,6 +6,7 @@ on:
       - 'main'
     paths:
       - 'concert-app/**'
+      - 'K8s/**'
 jobs:     
   call-reusable-workflow:
     uses: ./.github/workflows/dockerizacion_workflow.yaml
