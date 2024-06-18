@@ -28,5 +28,5 @@ jobs:
   call-reusable-workflow:
     uses: ./.github/workflows/dockerizacion_workflow.yaml
     with:
-      image-to-build: ${{ needs.build.outputs.tag }}
+      tag: ${{ needs.build.outputs.tag }}
     secrets: inherit
