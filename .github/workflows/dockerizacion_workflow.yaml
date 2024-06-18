@@ -25,7 +25,7 @@ jobs:
 
       - name: build and push
         run: |
-          docker build -t dboffelli/concert-app:1.0 concert-app/.
-          docker tag dboffelli/concert-app:1.0  dnazarenocr.azurecr.io/concert-app:1.0
+          docker build -t dboffelli/${{ inputs.image-to-build }} concert-app/.
+          docker tag dboffelli/${{ inputs.image-to-build }}  dnazarenocr.azurecr.io/${{ inputs.image-to-build }}
           az acr login --name dnazarenocr
-          docker push dnazarenocr.azurecr.io/concert-app:1.0
+          docker push dnazarenocr.azurecr.io/${{ inputs.image-to-build }}
