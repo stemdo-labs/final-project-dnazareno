@@ -2,7 +2,7 @@ name: 'K8s Deploy'
 on:
   workflow_call:
     inputs:
-      image-to-build:
+      inputs:
         required: true
         type: string
 #on:  workflow_dispatch
