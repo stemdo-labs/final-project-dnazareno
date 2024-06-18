@@ -190,6 +190,9 @@ resource "azurerm_kubernetes_cluster" "example" {
     node_count      = var.aks_node_count
     vm_size         = var.aks_node_vm_size
     vnet_subnet_id  = azurerm_subnet.azsbn3.id
+    upgrade_settings {
+      max_surge = 1
+    }
   }
 
   network_profile {
