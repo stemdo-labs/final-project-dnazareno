@@ -2,7 +2,7 @@ name: Dockerizacion
 on:
   workflow_call:
     inputs:
-      image-to-build:
+      tag:
         required: true
         type: string
 #on:  workflow_dispatch
@@ -25,7 +25,7 @@ jobs:
 
       - name: build and push
         run: |
-          docker build -t dboffelli/${{ inputs.image-to-build }} concert-app/.
-          docker tag dboffelli/${{ inputs.image-to-build }}  dnazarenocr.azurecr.io/${{ inputs.image-to-build }}
+          docker build -t dboffelli/concert-app:${{ inputs.tag }} concert-app/.
+          docker tag dboffelli/concert-app:${{ inputs.tag }}  dnazarenocr.azurecr.io/concert-app:${{ inputs.tag }}
           az acr login --name dnazarenocr
-          docker push dnazarenocr.azurecr.io/${{ inputs.image-to-build }}
+          docker push dnazarenocr.azurecr.io/concert-app:${{ inputs.tag }}
