@@ -8,7 +8,12 @@ jobs:
   backup:
     name: 'DB Backup'
     runs-on: self-hosted
- 
+    env:
+      AZCOPY_SPA_APPLICATION_ID: ${{ secrets.CLIENT_ID }}
+      AZCOPY_SPA_CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
+      AZCOPY_AUTO_LOGIN_TYPE: SPN
+      AZCOPY_TENANT_ID: ${{ secrets.TENANT_ID }}
+
     defaults:
       run:
         shell: bash
@@ -19,4 +24,4 @@ jobs:
         namedate=$(date +'%Y%m%d%H%M%S')
         mysqldump -h ${{ vars.DB_HOST }} -u ${{ vars.DB_USER }} -p${{ secrets.DB_PASSWORD }} ${{ vars.DB_NAME }} > backup-$namedate.sql
         tar -czvf backup-$namedate.tar.gz backup-$namedate.sql
-        azcopy copy 'backup-$namedate.tar.gz' 'https://${{ vars.STORAGE_ACCOUNT_NAME }}.blob.core.windows.net/${{ vars.AZ_CONTAINER_NAME }}/backup-$namedate.tar.gz'
+        azcopy copy backup-$namedate.tar.gz 'https://${{ vars.STORAGE_ACCOUNT_NAME }}.blob.core.windows.net/${{ vars.AZ_CONTAINER_NAME }}/backup-$namedate.tar.gz'
