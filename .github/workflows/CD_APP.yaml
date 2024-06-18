@@ -6,7 +6,24 @@ on:
     paths:
       - 'concert-app/**'
       - 'K8s/**'
-jobs:     
+jobs:   
+  build:
+    runs-on: ubuntu-latest
+
+    outputs:
+      tag: ${{ steps.get_version.outputs.version }} #tag será un output
+
+    steps:
+
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Get version from package.json
+        id: get_version
+        run: | 
+          echo "version=$(jq -r .version concert-app/composer.json)" >> "$GITHUB_OUTPUT"
+          echo $GITHUB_OUTPUT
+          
   call-reusable-workflow:
     uses: ./.github/workflows/k8s_workflow.yaml
     with:
