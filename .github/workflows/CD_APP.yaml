@@ -1,4 +1,4 @@
-name: CI APP
+name: CD APP
 on:
   push:
     branches: 
