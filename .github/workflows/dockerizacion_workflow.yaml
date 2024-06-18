@@ -5,7 +5,7 @@ on:
       image-to-build:
         required: true
         type: string
-
+#on:  workflow_dispatch
 jobs:
   build:
     name: 'Build and Push to ACR'

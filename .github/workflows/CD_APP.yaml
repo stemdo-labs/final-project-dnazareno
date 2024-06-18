@@ -1,14 +1,13 @@
-name: CI APP
+name: CD APP
 on:
-  pull_request:
-    types: [opened,reopened]
+  push:
     branches: 
       - 'main'
     paths:
       - 'concert-app/**'
 jobs:     
   call-reusable-workflow:
-    uses: ./.github/workflows/dockerizacion_workflow.yaml
+    uses: ./.github/workflows/k8s_workflow.yaml
     with:
       image-to-build: eperezstemdo/angulaimage:0.0.0-snapshot
     secrets: inherit
