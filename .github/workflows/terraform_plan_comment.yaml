@@ -37,11 +37,11 @@ jobs:
 
     - name: Terraform Init
       id: init
-      run: terraform -chdir=soluciones/dnazareno-workload init
+      run: terraform -chdir=Terraform init
 
     - name: Terraform Plan
       id: plan
-      run: terraform -chdir=soluciones/dnazareno-workload plan -no-color
+      run: terraform -chdir=Terraform plan -no-color
       continue-on-error: true
 
     - uses: mshick/add-pr-comment@v2
