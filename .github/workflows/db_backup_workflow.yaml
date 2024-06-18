@@ -18,17 +18,12 @@ jobs:
       run:
         shell: bash
 # azcopy copy backup-$namedate.tar.gz 'https://${{ vars.STORAGE_ACCOUNT_NAME }}.blob.core.windows.net/${{ vars.AZ_CONTAINER_NAME }}/backup-$namedate.tar.gz' 
+# azcopy login --login-type=SPN --application-id ${{ secrets.CLIENT_ID }}
     steps:
-    - uses: azure/login@v1
-      with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }}
-        
     - name: Backup
       run: |
         namedate=$(date +'%Y%m%d%H%M%S')
         mysqldump -h ${{ vars.DB_HOST }} -u ${{ vars.DB_USER }} -p${{ secrets.DB_PASSWORD }} ${{ vars.DB_NAME }} > backup.sql
         tar -czvf backup.tar.gz backup.sql
-        azcopy login --login-type=SPN --application-id ${{ secrets.CLIENT_ID }}
-        az storage blob upload --account-name stadnazarenodvfinlab --container-name dbbackup --name backup.tar.gz --file backup.tar.gz --auth-mode login
-
+        azcopy copy backup-$namedate.tar.gz 'https://${{ vars.STORAGE_ACCOUNT_NAME }}.blob.core.windows.net/${{ vars.AZ_CONTAINER_NAME }}/backup-$namedate.tar.gz' 
 
