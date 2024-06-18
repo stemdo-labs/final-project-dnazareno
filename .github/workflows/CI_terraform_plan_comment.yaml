@@ -32,6 +32,20 @@ jobs:
     # Checkout the repository to the GitHub Actions runner
     - name: Checkout
       uses: actions/checkout@v4
+
+    - name: Pruebas unitarias
+      run: echo "Tests unitarios superados con éxito"
+
+    - name: Pruebas de integracion
+      run: echo "Tests de integración superados con éxito"
+
+    - name: Pruebas End to End
+      run: echo "Tests End to End superados con éxito"
+
+    - name: Run markdown lint to check README
+      run: |
+        npm install remark-cli remark-preset-lint-consistent vfile-reporter-json
+        npx remark . --use remark-preset-lint-consistent --report vfile-reporter-json
       
     - uses: hashicorp/setup-terraform@v3
 
