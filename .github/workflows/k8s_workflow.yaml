@@ -1,6 +1,11 @@
 name: 'K8s Deploy'
-
-on:  workflow_dispatch
+on:
+  workflow_call:
+    inputs:
+      image-to-build:
+        required: true
+        type: string
+#on:  workflow_dispatch
   # push:
   #   branches: [main]
     
