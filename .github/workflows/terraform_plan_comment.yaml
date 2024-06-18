@@ -1,9 +1,11 @@
-name: 'Terraform Plan + PR add comment'
-
+name: CI Terraform
 on:
   pull_request:
-    branches: [main]
-    types: [opened, reopened]
+    types: [opened,reopened]
+    branches: 
+      - 'main'
+    paths:
+      - 'Terraform/**'
 
 jobs:
   terraform:
