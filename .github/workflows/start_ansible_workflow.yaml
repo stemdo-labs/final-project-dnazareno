@@ -1,4 +1,4 @@
-name: 'Terraform Start Ansible'
+name: 'Start Ansible'
 
 on:  workflow_dispatch
     
