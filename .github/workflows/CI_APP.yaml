@@ -23,8 +23,8 @@ jobs:
       - name: Get version from package.json
         id: get_version
         run: | 
-          echo "name=$(jq -r name concert-app/composer.json)" >> "$GITHUB_OUTPUT"
-          echo "version=$(jq -r version concert-app/composer.json)" >> "$GITHUB_OUTPUT"
+          echo "name=$(jq -r .name concert-app/composer.json)" >> "$GITHUB_OUTPUT"
+          echo "version=$(jq -r .version concert-app/composer.json)" >> "$GITHUB_OUTPUT"
           echo $GITHUB_OUTPUT
           
   call-reusable-workflow:
