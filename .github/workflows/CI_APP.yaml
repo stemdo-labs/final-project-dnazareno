@@ -11,3 +11,4 @@ jobs:
     uses: ./.github/workflows/dockerizacion_workflow.yaml
     with:
       image-to-build: eperezstemdo/angulaimage:0.0.0-snapshot
+    secrets: inherit
