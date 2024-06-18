@@ -1,5 +1,13 @@
+name: CI APP
 on:
   pull_request:
     types: [closed]
     branches: 
       - 'main'
+    paths:
+      - 'concert-app/.'
+jobs:     
+  call-reusable-workflow:
+    uses: ./.github/workflows/dockerizacion_workflow.yaml
+    with:
+      image-to-build: eperezstemdo/angulaimage:0.0.0-snapshot
