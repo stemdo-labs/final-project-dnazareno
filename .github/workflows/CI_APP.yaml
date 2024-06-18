@@ -29,7 +29,7 @@ jobs:
       - name: Pruebas End to End
         run: echo "Tests End to End superados con éxito"
 
-      - name: Run markdown lint
+      - name: Run markdown lint to check README
         run: |
           npm install remark-cli remark-preset-lint-consistent vfile-reporter-json
           npx remark . --use remark-preset-lint-consistent --report vfile-reporter-json
@@ -41,9 +41,9 @@ jobs:
           echo $GITHUB_OUTPUT
           
 
-  # call-reusable-workflow:
-  #   needs: build #para traer el output
-  #   uses: ./.github/workflows/dockerizacion_workflow.yaml
-  #   with:
-  #     tag: ${{ needs.build.outputs.tag }}
-  #   secrets: inherit
+  call-reusable-workflow:
+    needs: build #para traer el output
+    uses: ./.github/workflows/dockerizacion_workflow.yaml
+    with:
+      tag: ${{ needs.build.outputs.tag }}
+    secrets: inherit
