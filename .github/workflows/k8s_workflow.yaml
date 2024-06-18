@@ -2,7 +2,7 @@ name: 'K8s Deploy'
 on:
   workflow_call:
     inputs:
-      inputs:
+      tag:
         required: true
         type: string
 #on:  workflow_dispatch
