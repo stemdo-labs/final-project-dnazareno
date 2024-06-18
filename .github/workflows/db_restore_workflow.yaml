@@ -1,10 +1,11 @@
 name: 'DB Restore'
 
-on:  workflow_dispatch:
-    inputs:
-      backup:
-        required: true
-        type: string
+on:  
+    workflow_dispatch:
+        inputs:
+          backup:
+            required: true
+            type: string
 
     
 jobs:
@@ -24,6 +25,6 @@ jobs:
       run: |
         az storage blob download --account-name stadnazarenodvfinlab --container-name dbbackup --name {{ github.event.inputs.backup }}.tar.gz --file {{ github.event.inputs.backup }}.tar.gz
         tar -xzvf {{ github.event.inputs.backup }}.tar.gz {{ github.event.inputs.backup }}.sql
-        mysqldump -h ${{ vars.DB_HOST }} -u ${{ vars.DB_USER }} -p${{ secrets.DB_PASSWORD }} ${{ vars.DB_NAME }} > {{ github.event.inputs.backup }}.sql
+        mysql -u ${{ vars.DB_USER }} -p${{ secrets.DB_PASSWORD }} -h ${{ vars.DB_HOST }} concierto < {{ github.event.inputs.backup }}.sql
         
         
