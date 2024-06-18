@@ -25,6 +25,7 @@ jobs:
           echo $GITHUB_OUTPUT
           
   call-reusable-workflow:
+    needs: build
     uses: ./.github/workflows/k8s_workflow.yaml
     with:
       image-to-build: eperezstemdo/angulaimage:0.0.0-snapshot
