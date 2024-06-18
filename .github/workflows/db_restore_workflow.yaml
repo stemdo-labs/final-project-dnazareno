@@ -1,8 +1,7 @@
 name: 'DB Backup'
 
-on: # workflow_dispatch
-  schedule:
-    - cron: "10,15,20,25 * * * *"
+on:  workflow_dispatch
+
     
 jobs:
   backup:
