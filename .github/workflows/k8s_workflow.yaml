@@ -2,7 +2,7 @@ name: 'K8s Deploy'
 on:
   workflow_call:
     inputs:
-      image-to-build:
+      tag:
         required: true
         type: string
 #on:  workflow_dispatch
@@ -36,3 +36,4 @@ jobs:
     - name: Deploy
       run: |
         kubectl apply -f K8s/.
+        kubectl set image deployment/deploy-concert concertapp=dnazarenocr.azurecr.io/concert-app:${{ inputs.tag }}

@@ -1,8 +1,11 @@
 name: 'Terraform Apply'
 
-on:  workflow_dispatch
-  # push:
-  #   branches: [main]
+on:
+  push:
+    branches: 
+      - 'main'
+    paths:
+      - 'Terraform/**'
     
 jobs:
   terraform:
