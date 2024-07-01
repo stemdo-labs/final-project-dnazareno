@@ -10,16 +10,8 @@ jobs:
   start-terraform:
     uses: ./.github/workflows/CD_terraform_workflow.yaml
 
-  start-vmbackup:
-    needs: start-terraform
-    uses: ./.github/workflows/start_ansible.yaml
-
-  ansible:
-    needs: start-vmbackup
-    uses: ./.github/workflows/ansible_workflow.yaml
-
   start-k8s:
-    needs: ansible
+    needs: start-terraform
     uses: ./.github/workflows/start_k8s_workflow.yaml
 
   registry:
