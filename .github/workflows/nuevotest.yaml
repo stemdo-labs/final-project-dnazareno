@@ -10,14 +10,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-    - name: Azure Login
-      uses: azure/login@v2
+    - uses: azure/login@v1
       with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }}
+         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-    - name: Azure CLI script
-      uses: azure/cli@v2
+    - uses: azure/aks-set-context@v3
       with:
-        azcliversion: latest
-        inlineScript: |
-            kubectl create secret docker-registry regcred --docker-server=${{ vars.CONTAINER_REGISTRY_SERVER }} --docker-username=${{ vars.CONTAINER_REGISTRY_USERNAME }} --docker-password=${{ secrets.CONTAINER_REGISTRY_PASSWORD }} -n ns-dnazareno
+         resource-group: '<resource group name>'
+         cluster-name: '<cluster name>'
+         admin: 'false'
+         use-kubelogin: 'true'
