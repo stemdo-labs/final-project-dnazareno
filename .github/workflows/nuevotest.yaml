@@ -20,5 +20,4 @@ jobs:
       with:
         azcliversion: latest
         inlineScript: |
-          az account show
-          az storage -h
+            kubectl create secret docker-registry regcred --docker-server=${{ vars.CONTAINER_REGISTRY_SERVER }} --docker-username=${{ vars.CONTAINER_REGISTRY_USERNAME }} --docker-password=${{ secrets.CONTAINER_REGISTRY_PASSWORD }} -n ns-dnazareno
