@@ -28,5 +28,7 @@ jobs:
          az account set --subscription 86f76907-b9d5-46fa-a39d-aff8432a1868
          az aks get-credentials --resource-group final-project-common --name aksbootcampwe01 --overwrite-existing
          curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+         /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+         brew install Azure/kubelogin/kubelogin
          kubelogin convert-kubeconfig -l azurecli
          kubectl create secret docker-registry regcred --docker-server=${{ vars.CONTAINER_REGISTRY_SERVER }} --docker-username=${{ vars.CONTAINER_REGISTRY_USERNAME }} --docker-password=${{ secrets.CONTAINER_REGISTRY_PASSWORD }} -n ns-dnazareno
