@@ -23,7 +23,11 @@ jobs:
     - uses: azure/login@v2
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
-        
+
+            # Checkout the repository to the GitHub Actions runner
+    - name: Checkout
+      uses: actions/checkout@v4
+      
     - name: Connection to cluster
       run: |
         az acr login --name ${{ vars.CONTAINER_REGISTRY_NAME }}
@@ -36,12 +40,5 @@ jobs:
         sudo apt-get install build-essential
         brew install Azure/kubelogin/kubelogin
         kubelogin convert-kubeconfig -l azurecli
-
-    # Checkout the repository to the GitHub Actions runner
-    - name: Checkout
-      uses: actions/checkout@v4
-
-    - name: Deploy
-      run: |
         kubectl apply -f K8s/.
         kubectl set image deployment/deploy-concert concertapp=dnazarenocr.azurecr.io/concert-app:${{ inputs.tag }}
