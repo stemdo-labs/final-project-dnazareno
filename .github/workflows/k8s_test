@@ -1,0 +1,28 @@
+name: build_deploy_aks
+on: workflow_dispatch
+
+jobs:
+   build:
+      runs-on: ubuntu-latest
+      steps:
+         - uses: actions/checkout@v4
+
+         - uses: azure/setup-kubectl@v4
+
+        - uses: azure/login@v2
+          with:
+            creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+         # Set the target AKS cluster.
+         - uses: Azure/aks-set-context@v4
+           with:
+              creds: '${{ secrets.AZURE_CREDENTIALS }}'
+              cluster-name: ${{ vars.KUBERNETES_CLUSTER_NAME }}
+              resource-group: ${{ vars.COMMON_RESOURCE_GROUP_NAME }}
+
+         - uses: Azure/k8s-create-secret@v4
+           with:
+              container-registry-url: ${{ vars.CONTAINER_REGISTRY_SERVER }}
+              container-registry-username: ${{ vars.CONTAINER_REGISTRY_USERNAME }}
+              container-registry-password: ${{ secrets.CONTAINER_REGISTRY_PASSWORD }}
+              secret-name: regcred
