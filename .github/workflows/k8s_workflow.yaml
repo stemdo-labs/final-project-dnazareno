@@ -42,3 +42,4 @@ jobs:
         kubelogin convert-kubeconfig -l azurecli
         kubectl apply -f K8s/.
         kubectl set image deployment/deploy-concert concertapp=dnazarenocr.azurecr.io/concert-app:${{ inputs.tag }}
+        kubectl get all -n ns-dnazareno
