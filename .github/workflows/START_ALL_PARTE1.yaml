@@ -1,11 +1,5 @@
-name: START ALL
+name: START ALL P1
 on: workflow_dispatch
-  # push:
-  #   branches: 
-  #     - 'main'
-  #   paths:
-  #     - 'concert-app/**'
-  #     - 'K8s/**'
 jobs:   
   start-terraform:
     uses: ./.github/workflows/CD_terraform_workflow.yaml
