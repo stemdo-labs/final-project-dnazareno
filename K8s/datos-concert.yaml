@@ -8,4 +8,4 @@ data:
 kind: ConfigMap
 metadata:
   name: datos-concert
-  namespace: ns_dnazareno
+  namespace: ns-dnazareno
