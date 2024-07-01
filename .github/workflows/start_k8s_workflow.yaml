@@ -24,12 +24,16 @@ jobs:
       run: |
         az acr login --name ${{ vars.CONTAINER_REGISTRY_NAME }}
 
-    - name: Azure CLI script file
-      uses: azure/cli@v2
-      with:
-        azcliversion: 2.30.0
-        inlineScript: |
-          az aks install-cli
+    # - name: Azure CLI script file
+    #   uses: azure/cli@v2
+    #   with:
+    #     azcliversion: 2.30.0
+    #     inlineScript: |
+    #       az aks install-cli
+
+  - uses: azure/use-kubelogin@v1
+    with:
+      kubelogin-version: 'v0.0.24'
           
     - name: Connection to cluster and secret create
       run: |       
