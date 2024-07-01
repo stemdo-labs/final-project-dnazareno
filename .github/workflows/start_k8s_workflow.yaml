@@ -16,23 +16,49 @@ jobs:
 
     steps:
     
-    - uses: azure/login@v2
-      with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }}
-        
-    - name: Connection to cluster and secret create
-      run: |
-        az acr login --name ${{ vars.CONTAINER_REGISTRY_NAME }}
+    # - uses: azure/login@v2
+    #   with:
+    #     creds: ${{ secrets.AZURE_CREDENTIALS }}
+      
+  runs:
+    using: "composite"
+    steps:
+      - name: Azure Login
+        shell: bash
+        run: |
+          az login \
+            --service-principal \
+            --username ${{ inputs.client-id }} \
+            --password ${{ inputs.client-secret }} \
+            --tenant ${{ inputs.tenant-id }}
+    
+      - name: Kubernetes Login
+        if: inputs.admin
+        shell: bash
+        run: |
+          if [[ "${{ inputs.admin }}" == "true" ]]; then
+            az aks get-credentials \
+              --name ${{ inputs.name }} \
+              --resource-group ${{ inputs.resource-group }} \
+              --subscription ${{ inputs.subscription-id }} \
+              --admin
+          else
+            az aks get-credentials \
+              --name ${{ inputs.name }} \
+              --resource-group ${{ inputs.resource-group }} \
+              --subscription ${{ inputs.subscription-id }}
+          fi
+          az acr login --name ${{ vars.CONTAINER_REGISTRY_NAME }}
 
-    - name: Set imagePullSecret
-      uses: azure/k8s-create-secret@v4
-      with:
-         namespace: 'ns-dnazareno'
-         secret-name: 'regcred'
-         container-registry-url: ${{ vars.CONTAINER_REGISTRY_SERVER }}
-         container-registry-username: ${{ vars.CONTAINER_REGISTRY_USERNAME }}
-         container-registry-password: ${{ secrets.CONTAINER_REGISTRY_PASSWORD }}
-      id: create-secret
+    # - name: Set imagePullSecret
+    #   uses: azure/k8s-create-secret@v4
+    #   with:
+    #      namespace: 'ns-dnazareno'
+    #      secret-name: 'regcred'
+    #      container-registry-url: ${{ vars.CONTAINER_REGISTRY_SERVER }}
+    #      container-registry-username: ${{ vars.CONTAINER_REGISTRY_USERNAME }}
+    #      container-registry-password: ${{ secrets.CONTAINER_REGISTRY_PASSWORD }}
+    #   id: create-secret
 
     # - name: Azure CLI script file
     #   uses: azure/cli@v2
