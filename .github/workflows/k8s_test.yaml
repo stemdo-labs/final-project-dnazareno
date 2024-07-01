@@ -21,12 +21,16 @@ jobs:
               cluster-name: ${{ vars.KUBERNETES_CLUSTER_NAME }}
               resource-group: ${{ vars.COMMON_RESOURCE_GROUP_NAME }}
 
-         - name: Set imagePullSecret
-           uses: azure/k8s-create-secret@v4
-           with:
-              namespace: 'ns-dnazareno'
-              secret-name: 'regcred'
-              container-registry-url: ${{ vars.CONTAINER_REGISTRY_SERVER }}
-              container-registry-username: ${{ vars.CONTAINER_REGISTRY_USERNAME }}
-              container-registry-password: ${{ secrets.CONTAINER_REGISTRY_PASSWORD }}
-           id: create-secret
+         - name: Connection to cluster and secret create
+           run: |       
+            kubectl create secret docker-registry regcred --docker-server=${{ vars.CONTAINER_REGISTRY_SERVER }} --docker-username=${{ vars.CONTAINER_REGISTRY_USERNAME }} --docker-password=${{ secrets.CONTAINER_REGISTRY_PASSWORD }} -n ns-dnazareno
+    
+         #- name: Set imagePullSecret
+         #  uses: azure/k8s-create-secret@v4
+         #  with:
+         #     namespace: 'ns-dnazareno'
+         #     secret-name: 'regcred'
+         #     container-registry-url: ${{ vars.CONTAINER_REGISTRY_SERVER }}
+         #     container-registry-username: ${{ vars.CONTAINER_REGISTRY_USERNAME }}
+         #     container-registry-password: ${{ secrets.CONTAINER_REGISTRY_PASSWORD }}
+         #  id: create-secret
