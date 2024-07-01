@@ -7,6 +7,11 @@ jobs:
       steps:
          - uses: actions/checkout@v4
 
+
+         - uses: azure/login@v2
+           with:
+            creds: ${{ secrets.AZURE_CREDENTIALS }}
+            
          - uses: azure/setup-kubectl@v4
 
          # Set the target AKS cluster.
