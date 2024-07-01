@@ -1,11 +1,11 @@
 name: CI Terraform
-on:
-  pull_request:
-    types: [opened,reopened]
-    branches: 
-      - 'main'
-    paths:
-      - 'Terraform/**'
+on: workflow_dispatch
+  # pull_request:
+  #   types: [opened,reopened]
+  #   branches: 
+  #     - 'main'
+  #   paths:
+  #     - 'Terraform/**'
 
 jobs:
   terraform:

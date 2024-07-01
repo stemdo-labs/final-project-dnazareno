@@ -1,11 +1,11 @@
 name: CD APP
-on:
-  push:
-    branches: 
-      - 'main'
-    paths:
-      - 'concert-app/**'
-      - 'K8s/**'
+on: workflow_dispatch
+  # push:
+  #   branches: 
+  #     - 'main'
+  #   paths:
+  #     - 'concert-app/**'
+  #     - 'K8s/**'
 jobs:   
   build:
     runs-on: ubuntu-latest
