@@ -31,9 +31,9 @@ jobs:
     #     inlineScript: |
     #       az aks install-cli
 
-  - uses: azure/use-kubelogin@v1
-    with:
-      kubelogin-version: 'v0.0.24'
+    - uses: azure/use-kubelogin@v1
+      with:
+        kubelogin-version: 'v0.0.24'
           
     - name: Connection to cluster and secret create
       run: |       
