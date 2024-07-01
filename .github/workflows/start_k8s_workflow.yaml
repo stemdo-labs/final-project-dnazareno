@@ -25,5 +25,5 @@ jobs:
         az acr login --name ${{ vars.CONTAINER_REGISTRY_NAME }}
         az aks install-cli
         az aks get-credentials --resource-group ${{ vars.COMMON_RESOURCE_GROUP_NAME }} --name ${{ vars.KUBERNETES_CLUSTER_NAME }}
-        kubectl create ns ns-dnazareno
+        #kubectl create ns ns-dnazareno
         kubectl create secret docker-registry regcred --docker-server=${{ vars.CONTAINER_REGISTRY_SERVER }} --docker-username=${{ vars.CONTAINER_REGISTRY_USERNAME }} --docker-password=${{ secrets.CONTAINER_REGISTRY_PASSWORD }} -n ns-dnazareno
