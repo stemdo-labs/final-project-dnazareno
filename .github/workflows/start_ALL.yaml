@@ -1,0 +1,31 @@
+name: START ALL
+on: workflow_dispatch
+  # push:
+  #   branches: 
+  #     - 'main'
+  #   paths:
+  #     - 'concert-app/**'
+  #     - 'K8s/**'
+jobs:   
+  start-terraform:
+    uses: ./.github/workflows/CD_terraform_workflow.yaml
+
+  start-vmbackup:
+    needs: start-terraform
+    uses: ./.github/workflows/start_ansible.yaml
+
+  ansible:
+    needs: start-vmbackup
+    uses: ./.github/workflows/ansible_workflow.yaml
+
+  start-k8s:
+    needs: ansible
+    uses: ./.github/workflows/start_k8s_workflow.yaml
+
+  registry:
+    needs: start-k8s
+    uses: ./.github/workflows/CI_APP.yaml
+
+  k8s:
+    needs: registry
+    uses: ./.github/workflows/CD_APP.yaml
