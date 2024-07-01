@@ -16,7 +16,7 @@ jobs:
 
     - uses: azure/aks-set-context@v3
       with:
-         resource-group: '<resource group name>'
-         cluster-name: '<cluster name>'
+         resource-group: 'final-project-common'
+         cluster-name: 'aksbootcampwe01'
          admin: 'false'
          use-kubelogin: 'true'
