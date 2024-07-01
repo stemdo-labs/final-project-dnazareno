@@ -1,0 +1,22 @@
+# File: .github/workflows/workflow.yml
+
+on: workflow_dispatch
+
+name: AzureCLISample
+
+jobs:
+
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+
+    - uses: azure/login@v1
+      with:
+         client-id: ${{ secrets.AZURE_CLIENT_ID }}
+         tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+         subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+    - uses: azure/aks-set-context@v3
+      with:
+         resource-group: '<resource group name>'
+         cluster-name: '<cluster name>'
