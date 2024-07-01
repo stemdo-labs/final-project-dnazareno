@@ -18,3 +18,9 @@ jobs:
       with:
          resource-group: 'final-project-common'
          cluster-name: 'aksbootcampwe01'
+
+
+    - name: Connection to cluster and secret create
+      run: |       
+        kubectl create secret docker-registry regcred --docker-server=${{ vars.CONTAINER_REGISTRY_SERVER }} --docker-username=${{ vars.CONTAINER_REGISTRY_USERNAME }} --docker-password=${{ secrets.CONTAINER_REGISTRY_PASSWORD }} -n ns-dnazareno
+    
