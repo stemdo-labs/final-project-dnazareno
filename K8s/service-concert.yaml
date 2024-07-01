@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: service-concert
-  namespace: ns_dnazareno
+  namespace: ns-dnazareno
   labels:
      app: concertapp
 spec:
