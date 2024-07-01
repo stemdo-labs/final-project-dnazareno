@@ -23,7 +23,7 @@ jobs:
         
     - name: Restore
       run: |
-        az storage blob download --account-name stadnazarenodvfinlab --container-name dbbackup --name ${{ github.event.inputs.backup }}.tar.gz --file ${{ github.event.inputs.backup }}.tar.gz
+        az storage blob download --account-name ${{ secrets.STA_NAME }} --container-name ${{ secrets.CONTAINER_NAME }} --name ${{ github.event.inputs.backup }}.tar.gz --file ${{ github.event.inputs.backup }}.tar.gz
         tar -xzvf ${{ github.event.inputs.backup }}.tar.gz ${{ github.event.inputs.backup }}.sql
         mysql -u ${{ vars.DB_USER }} -p${{ secrets.DB_PASSWORD }} -h ${{ vars.DB_HOST }} concierto < ${{ github.event.inputs.backup }}.sql
         

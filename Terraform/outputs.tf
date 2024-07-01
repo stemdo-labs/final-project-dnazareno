@@ -1,9 +1,5 @@
 output "resource_group_name" {
-  value = var.existent_resource_group_name
-}
-
-output "kubernetes_cluster_name" {
-  value = azurerm_kubernetes_cluster.example.name
+  value = var.rg_name
 }
 
 output "cr_admin_username" {
