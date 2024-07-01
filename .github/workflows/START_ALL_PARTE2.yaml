@@ -1,0 +1,9 @@
+name: START ALL P2
+on: workflow_dispatch
+jobs:   
+  start-vmbackup:
+    uses: ./.github/workflows/start_ansible.yaml
+
+  ansible:
+    needs: start-vmbackup
+    uses: ./.github/workflows/ansible_workflow.yaml
