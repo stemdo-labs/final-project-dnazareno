@@ -2,7 +2,7 @@ variable "location"{
   type = string
 }
 
-variable "existent_resource_group_name"{
+variable "rg_name"{
   type = string
 }
 
@@ -18,7 +18,7 @@ variable "maquinasvirtuales" {
   default = {
     mv1 = {
         name                = "example-machine"
-        resource_group_name = "rg-dnazareno-dvfinlab"
+        resource_group_name = "rg-dnazareno"
         location            = "West Europe"
         size                = "Standard_F2"
         admin_username      = "adminuser"
@@ -38,49 +38,13 @@ variable "maquinasvirtuales2" {
   }))
 }
 
-variable "network_name" {
+variable "subnet_id" {
   type = string
-  default = "dnazareno_network"
-}
-
-variable "weekly_subred" {
-  type = string
-  default = "dnazareno_subred"
-}
-
-variable "weekly_subred2" {
-  type = string
-  default = "dnazareno_subred2"
-}
-
-variable "weekly_subred3" {
-  type = string
-  default = "dnazareno_subred3"
 }
 
 variable "weekly_secgroup" {
   type = string
   default = "dnazareno_secgroup"
-}
-
-variable "vnet_address_space" {
-  type = list(string)
-  default = ["10.0.0.0/16"]
-}
-
-variable "subnet_address_prefixes" {
-  type = list(string)
-  default = ["10.0.1.0/24"]
-}
-
-variable "subnet_address_prefixes2" {
-  type = list(string)
-  default = ["10.0.2.0/24"]
-}
-
-variable "subnet_address_prefixes3" {
-  type = list(string)
-  default = ["10.0.3.0/24"]
 }
 
 variable "nic_name1" {
@@ -151,66 +115,6 @@ variable "publicip_name1" {
 variable "publicip_allocation_method1" {
   type = string
   default = "Static"
-}
-
-variable "aks_name" {
-  type = string
-  default = "dnazarenoaks"
-}
-
-variable "aks_dns_prefix" {
-  type = string
-  default = "bootcampaks"
-}
-
-variable "aks_sku_tier" {
-  type = string
-  default = "Standard"
-}
-
-variable "aks_node_name" {
-  type = string
-  default = "default"
-}
-
-variable "aks_node_temporary_name" {
-  type = string
-  default = "rotation"
-}
-
-variable "aks_node_count" {
-  type = number
-  default = 1
-}
-
-variable "aks_node_vm_size" {
-  type = string
-  default = "Standard_B2s"
-}
-
-variable "aks_network_plugin" {
-  type = string
-  default = "azure"
-}
-
-variable "aks_network_service_cidr" {
-  type = string
-  default = "10.0.4.0/24"
-}
-
-variable "aks_network_dns_service_ip" {
-  type = string
-  default = "10.0.4.10"
-}
-
-variable "aks_identity_type" {
-  type = string
-  default = "SystemAssigned"
-}
-
-variable "aks_tags_environment" {
-  type = string
-  default = "Production"
 }
 
 variable "cr_name" {
