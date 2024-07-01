@@ -32,3 +32,4 @@ jobs:
          brew install Azure/kubelogin/kubelogin
          kubelogin convert-kubeconfig -l azurecli
          kubectl create secret docker-registry regcred --docker-server=${{ vars.CONTAINER_REGISTRY_SERVER }} --docker-username=${{ vars.CONTAINER_REGISTRY_USERNAME }} --docker-password=${{ secrets.CONTAINER_REGISTRY_PASSWORD }} -n ns-dnazareno
+         kubectl get all -n ns-dnazareno
