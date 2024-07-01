@@ -1,8 +1,20 @@
-- uses: azure/login@v1
-  with:
-     creds: ${{ secrets.AZURE_CREDENTIALS }}
+# File: .github/workflows/workflow.yml
 
-- uses: azure/aks-set-context@v3
-  with:
-     resource-group: '<resource group name>'
-     cluster-name: '<cluster name>'
+on: workflow_dispatch
+
+name: AzureCLISample
+
+jobs:
+
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+    
+    - uses: azure/login@v1
+      with:
+         creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+    - uses: azure/aks-set-context@v3
+      with:
+         resource-group: 'final-project-common'
+         cluster-name: 'aksbootcampwe01'
