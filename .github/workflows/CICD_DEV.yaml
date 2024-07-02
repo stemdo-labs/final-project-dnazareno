@@ -3,7 +3,7 @@ on: # [workflow_dispatch,workflow_call]
    pull_request:
      types: [opened,reopened]
      branches: 
-       - 'main'
+       - 'dnazareno'
      paths:
        - 'concert-app/**'
        - 'K8s/**'
