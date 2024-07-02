@@ -53,4 +53,4 @@ jobs:
       
       - name: Get version from package.json
         run: | 
-          cat K8s/kustomize-base.yaml K8s/kustomize-dev.yaml
+          cat K8s/kustomize-base.yaml K8s/kustomize-dev.yaml | kustomize build
