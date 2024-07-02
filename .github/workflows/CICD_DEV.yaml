@@ -43,9 +43,9 @@ jobs:
       tag: ${{ needs.build.outputs.tag }}
     secrets: inherit
 
-  call-reusable-cd-workflow:
-    needs: build
-    uses: ./.github/workflows/k8s_workflow.yaml
-    with:
-      tag: ${{ needs.build.outputs.tag }}
-    secrets: inherit
+  # call-reusable-cd-workflow:
+  #   needs: build
+  #   uses: ./.github/workflows/k8s_workflow.yaml
+  #   with:
+  #     tag: ${{ needs.build.outputs.tag }}
+  #   secrets: inherit
