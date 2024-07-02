@@ -1,0 +1,45 @@
+name: 'K8s Deploy'
+on:
+  workflow_call:
+    inputs:
+      tag:
+        required: true
+        type: string
+#on:  workflow_dispatch
+  # push:
+  #   branches: [main]
+    
+jobs:
+  k8s:
+    name: 'K8s'
+    runs-on: ubuntu-latest
+    environment: production
+ 
+    defaults:
+      run:
+        shell: bash
+ 
+    steps:
+    - uses: azure/login@v2
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+            # Checkout the repository to the GitHub Actions runner
+    - name: Checkout
+      uses: actions/checkout@v4
+      
+    - name: Connection to cluster
+      run: |
+        az acr login --name ${{ vars.CONTAINER_REGISTRY_NAME }}
+        az account set --subscription ${{ secrets.SUBSCRIPTION_ID }}
+        az aks get-credentials --resource-group ${{ vars.COMMON_RESOURCE_GROUP_NAME }} --name ${{ vars.KUBERNETES_CLUSTER_NAME }} --overwrite-existing
+        curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+        (echo; echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"') >> /home/runner/.bashrc
+        eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+        sudo apt-get install build-essential
+        brew install Azure/kubelogin/kubelogin
+        kubelogin convert-kubeconfig -l azurecli
+        kubectl get all -n ns-dnazareno
+        kubectl get pods --namespace ingress-nginx
+        kubectl get service ingress-nginx-controller --namespace=ingress-nginx
