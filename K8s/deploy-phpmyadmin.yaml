@@ -2,7 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: deploy-phpmyadmin
-  namespace: ns-dnazareno
 spec:
   selector:  
     matchLabels:
