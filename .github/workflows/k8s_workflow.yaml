@@ -41,5 +41,5 @@ jobs:
         brew install Azure/kubelogin/kubelogin
         kubelogin convert-kubeconfig -l azurecli
         kubectl apply -f K8s/.
-        kubectl set image deployment/deploy-concert concertapp=dnazarenocr.azurecr.io/concert-app:${{ inputs.tag }}
+        kubectl set image deployment/deploy-concert concertapp=dnazarenocr.azurecr.io/concert-app:${{ inputs.tag }} -n ns-dnazareno
         kubectl get all -n ns-dnazareno
