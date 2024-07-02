@@ -55,3 +55,6 @@ jobs:
         run: | 
           cat K8s/kustomize-base.yaml K8s/kustomize-dev.yaml > kustomization.yaml
           kustomize build
+          kustomize build kubectl apply
+          
+          
