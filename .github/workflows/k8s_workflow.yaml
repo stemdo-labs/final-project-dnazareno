@@ -43,3 +43,7 @@ jobs:
         kubectl apply -f K8s/.  -n ns-dnazareno
         kubectl set image deployment/deploy-concert concertapp=dnazarenocr.azurecr.io/concert-app:${{ inputs.tag }} -n ns-dnazareno
         kubectl get all -n ns-dnazareno
+
+    - uses: actions/checkout@v4
+    - name: Setup tmate session
+      uses: mxschmitt/action-tmate@v3
