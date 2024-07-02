@@ -42,9 +42,13 @@ jobs:
       tag: ${{ needs.build.outputs.tag }}
     secrets: inherit
 
-  # call-reusable-cd-workflow:
-  #   needs: build
-  #   uses: ./.github/workflows/k8s_workflow.yaml
-  #   with:
-  #     tag: ${{ needs.build.outputs.tag }}
-  #   secrets: inherit
+  CD-test:
+    needs: [build,call-reusable-ci-workflow]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      
+      - name: Get version from package.json
+        run: | 
+          cat K8s/kustomize-base.yaml K8s/kustomize-dev.yaml
