@@ -1,5 +1,5 @@
 name: CI APP
-on: workflow_dispatch
+on: [workflow_dispatch,workflow_call]
   # pull_request:
   #   types: [opened,reopened]
   #   branches: 
