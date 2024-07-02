@@ -2,7 +2,7 @@ name: START ALL P1
 on: workflow_dispatch
 jobs:   
   start-terraform:
-    uses: ./.github/workflows/CD_terraform_workflow.yaml
+    uses: ./.github/workflows/CD_terraform_workflow.yml
 
   start-k8s:
     needs: start-terraform
