@@ -1,0 +1,6 @@
+
+labels:
+- includeSelectors: false
+  pairs:
+    entorno: dev
+nameSuffix: -dev
