@@ -1,12 +1,12 @@
 name: CI APP
-on: [workflow_dispatch,workflow_call]
-  # pull_request:
-  #   types: [opened,reopened]
-  #   branches: 
-  #     - 'main'
-  #   paths:
-  #     - 'concert-app/**'
-  #     - 'K8s/**'
+on: # [workflow_dispatch,workflow_call]
+   pull_request:
+     types: [opened,reopened]
+     branches: 
+       - 'main'
+     paths:
+       - 'concert-app/**'
+       - 'K8s/**'
 jobs:
   build:
     runs-on: ubuntu-latest
