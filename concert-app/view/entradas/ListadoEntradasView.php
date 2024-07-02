@@ -8,7 +8,7 @@
     </head>
     <body>
         <div class="container">
-            <h1 class="text-center">LISTADO DE ENTRADAS PARA EL FESTIVAL 1.5!</h1>
+            <h1 class="text-center">LISTADO DE ENTRADAS PARA EL FESTIVAL 2.0.0!</h1>
     <?php
             // comprobamos que las dos variables con las consultas no estén vacías
             if(!empty($datosEntrada) && !empty($datosTipoEntrada)){
