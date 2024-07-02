@@ -11,14 +11,14 @@ spec:
    rules:
    - http:
        paths:
-       - path: /dnazareno/test1(/|$)(.*)
+       - path: /dnazareno/db(/|$)(.*)
          pathType: Prefix
          backend:
            service:
              name: service-phpmyadmin
              port:
                number: 80
-       - path: /dnazareno/test2(/|$)(.*)
+       - path: /dnazareno/app(/|$)(.*)
          pathType: Prefix
          backend:
            service:
