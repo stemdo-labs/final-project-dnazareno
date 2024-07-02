@@ -44,7 +44,8 @@ jobs:
   #   secrets: inherit
 
   CD-test:
-    needs: [build,call-reusable-ci-workflow]
+    #needs: [build,call-reusable-ci-workflow]
+    needs: [build]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
