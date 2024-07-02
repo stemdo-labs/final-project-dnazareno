@@ -25,10 +25,10 @@ spec:
              name: service-concert
              port:
                number: 80
-      - path: /(.*)
-        pathType: Prefix
-        backend:
-          service:
-            name: service-concert
-            port:
-              number: 80
+       - path: /(.*)
+         pathType: Prefix
+         backend:
+           service:
+             name: service-concert
+             port:
+               number: 80
