@@ -1,13 +1,5 @@
 name: 'K8s job'
-on:
-  workflow_call:
-    inputs:
-      tag:
-        required: true
-        type: string
-#on:  workflow_dispatch
-  # push:
-  #   branches: [main]
+on:  workflow_dispatch
     
 jobs:
   k8s:
