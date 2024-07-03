@@ -13,7 +13,6 @@
     - mysql-client
     - python3-mysqldb
     - libmysqlclient-dev
-  #become: yes
        
 - name: start and enable mysql service
   service:
@@ -34,8 +33,6 @@
     login_user: root
     login_password: ''
     state: present
-  tags:
-    - rootpassword
 
 - name: Create admin user with remote access
   mysql_user:
@@ -47,14 +44,23 @@
     login_user: root
     login_password: "{{root_password}}"
     state: present
-    
+
 - name: creating database 
   mysql_db:
     name: "{{db_name}}"
     state: present
     login_user: root
     login_password: "{{root_password}}"
-    
+
+- name: creating database 
+  mysql_db:
+    name: "{{db_dev_name}}"
+    state: present
+    login_user: root
+    login_password: "{{root_password}}"
+  tags:
+    - dev
+
 - name: Enable remote login to mysql
   lineinfile:
     path: /etc/mysql/mysql.conf.d/mysqld.cnf
@@ -70,28 +76,20 @@
     - initialquery
 
 - name: insert sample data into database  
-  mysql_db: name=concierto state=import target=/tmp/startquery.sql login_user=root login_password="{{ root_password }}"   
+  mysql_db: name="{{db_name}}" state=import target=/tmp/startquery.sql login_user=root login_password="{{ root_password }}"   
   tags:
     - initialquery
 
-#
-#- name: Execute MySQL secure installation
-#  expect:
-#    command: mysql_secure_installation
-#    responses:
-#      'Enter password for user root:': "{{ root_password }}"
-#      'Press y\|Y for Yes, any other key for No': 'Y'
-#      'Please enter 0 = LOW, 1 = MEDIUM and 2 = STRONG': "{{ password_validation_policy }}"
-#      'Change the password for root \? \(\(Press y\|Y for Yes, any other key for No\)': 'n'
-#      'Remove anonymous users\? \(Press y\|Y for Yes, any other key for No\)': 'Y'
-#      'Disallow root login remotely\? \(Press y\|Y for Yes, any other key for No\)': 'Y'
-#      'Remove test database and access to it\? \(Press y\|Y for Yes, any other key for No\)': 'Y'
-#      'Reload privilege tables now\? \(Press y\|Y for Yes, any other key for No\)': 'Y'
-#  environment:
-#    MYSQL_PWD: "{{ root_password }}"
-#
-# handlers:
-# - name: Restart mysql
-#   service:
-#     name: mysql
-#     state: restarted
+- name: add sample data to database  
+  copy: src=startquerydev.sql dest=/tmp/startquerydev.sql  
+  tags:
+    - initialquery
+  tags:
+    - dev
+
+- name: insert sample data into database  
+  mysql_db: name="{{db_dev_name}}" state=import target=/tmp/startquerydev.sql login_user=root login_password="{{ root_password }}"   
+  tags:
+    - initialquery
+  tags:
+    - dev
