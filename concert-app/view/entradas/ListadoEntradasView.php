@@ -9,6 +9,7 @@
     <body>
         <div class="container">
             <h1 class="text-center">LISTADO DE ENTRADAS!</h1>
+            
     <?php
             // comprobamos que las dos variables con las consultas no estén vacías
             if(!empty($datosEntrada) && !empty($datosTipoEntrada)){
