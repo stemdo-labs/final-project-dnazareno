@@ -1,3 +1,3 @@
 - op: replace
-  path: /spec/slector/app
+  path: /spec/selector/app
   value: concertapp-dev
