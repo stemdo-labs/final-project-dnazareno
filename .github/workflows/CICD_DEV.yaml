@@ -45,6 +45,7 @@ jobs:
     uses: ./.github/workflows/dockerizacion_workflow.yaml
     with:
       tag: ${{ needs.build.outputs.tag }}
+      entorno: dev
     secrets: inherit
 
   CD-test:
@@ -52,6 +53,7 @@ jobs:
     uses: ./.github/workflows/k8s_kustomize_workflow.yaml
     with:
       tag: ${{ needs.build.outputs.tag }}
+      entorno: dev
     secrets: inherit
           
           
