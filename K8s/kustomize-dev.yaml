@@ -3,6 +3,7 @@ labels:
 - includeSelectors: false
   pairs:
     entorno: dev
+    app: concertapp-dev
 nameSuffix: -dev
 patches:
 - target:
