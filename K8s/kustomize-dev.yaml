@@ -10,7 +10,7 @@ patches:
     name: ingress-weekly
     group: networking.k8s.io
     version: v1
-  path: kustomize-patches/ingress-patches-dev.yaml
+  path: kustomize-patches/ingress-patch-dev.yaml
 - target:
     kind: Service
     name: service-concert
