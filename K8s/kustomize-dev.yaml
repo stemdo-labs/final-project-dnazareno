@@ -34,4 +34,4 @@ configMapGenerator:
 - name: datos-concert
   behavior: merge
   literals:
-  - DB_DATABASE=concierto_dev
+  - DB_DATABASE=concierto_test
