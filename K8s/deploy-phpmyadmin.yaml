@@ -8,6 +8,9 @@ spec:
       app: phpmyadmin
   replicas: 2
   template:  
+    metadata:
+      labels:
+        app: phpmyadmin
     spec:
       containers:
       - name: phpmyadmin
