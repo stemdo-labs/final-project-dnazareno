@@ -48,6 +48,7 @@ jobs:
         kubectl apply -f K8s/deploy-phpmyadmin.yaml  -n ns-dnazareno
         kubectl apply -f K8s/service-concert.yaml  -n ns-dnazareno
         kubectl apply -f K8s/service-phpmyadmin.yaml  -n ns-dnazareno
+        kubectl apply -f K8s/ingress-weekly.yaml -n ns-dnazareno
         kubectl set image deployment/deploy-concert concertapp=dnazarenocr.azurecr.io/concert-app:${{ inputs.tag }} -n ns-dnazareno
         kubectl get all -n ns-dnazareno
         kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.3.0/deploy/static/provider/cloud/deploy.yaml
