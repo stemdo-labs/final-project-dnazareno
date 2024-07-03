@@ -4,7 +4,8 @@ on:  workflow_dispatch
 jobs:
   k8s:
     name: 'K8s'
-    runs-on: ubuntu-latest
+    # runs-on: ubuntu-latest
+    runs-on: self-hosted
     environment: production
  
     defaults:
@@ -32,7 +33,6 @@ jobs:
         sudo apt-get install build-essential
         brew install Azure/kubelogin/kubelogin
         kubelogin convert-kubeconfig -l azurecli
-        kubectl delete pod deploy-concert-6bdcd457f8-v9kgk -n ns-dnazareno
-        kubectl delete pod deploy-concert-c69d96496-576fh -n ns-dnazareno
-        kubectl delete pod deploy-concert-c69d96496-p5zb -n ns-dnazareno
+        # kubectl delete pod deploy-concert-6bdcd457f8-v9kgk -n ns-dnazareno
+        # kubectl delete pod deploy-concert-c69d96496-576fh -n ns-dnazareno
         kubectl get all -n ns-dnazareno
