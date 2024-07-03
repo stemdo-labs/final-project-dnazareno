@@ -14,5 +14,5 @@
   path: /spec/template/spec/containers/0/env/2/valueFrom/configMapKeyRef/name
   value: datos-concert-dev
 - op: replace
-  path: /spec/template/spec/imagePullSecrets/name
+  path: /spec/template/spec/imagePullSecrets/0/name
   value: regcreddev
