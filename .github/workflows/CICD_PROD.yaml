@@ -1,4 +1,4 @@
-name: CICD APP DEV
+name: CICD APP PROD
 on: # [workflow_dispatch,workflow_call]
    workflow_dispatch:
    push:
