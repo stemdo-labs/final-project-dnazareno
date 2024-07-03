@@ -3,6 +3,8 @@ kind: Deployment
 metadata:
   name: deploy-concert
 spec:
+  strategy:
+    type: RollingUpdate
   selector:  
     matchLabels:
       app: concertapp
