@@ -3,5 +3,5 @@ root_password: "1234"
 admin_user: dnazareno
 admin_password: "1234"
 db_name: concierto
-db_name: concierto_test
+db_dev_name: concierto_test
 password_validation_policy: 1
