@@ -36,7 +36,7 @@ jobs:
       - name: Get version from package.json
         id: get_version
         run: | 
-          echo "version=$(date +'%Y%m%d%H%M%S')" >> "$GITHUB_OUTPUT"
+          echo "version=$(jq -r .version concert-app/composer.json)" >> "$GITHUB_OUTPUT"
           echo $GITHUB_OUTPUT
           
 
@@ -52,6 +52,7 @@ jobs:
     uses: ./.github/workflows/k8s_kustomize_workflow.yaml
     with:
       tag: ${{ needs.build.outputs.tag }}
+      entorno: prod
     secrets: inherit
           
           
