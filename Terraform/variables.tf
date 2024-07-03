@@ -119,7 +119,12 @@ variable "publicip_allocation_method1" {
 
 variable "cr_name" {
   type = string
-  default = "dnazarenocr"
+  default = "dnazarenocrprod"
+}
+
+variable "cr_name_dev" {
+  type = string
+  default = "dnazarenocrdev"
 }
 
 variable "cr_sku" {

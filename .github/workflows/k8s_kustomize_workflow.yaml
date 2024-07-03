@@ -31,7 +31,7 @@ jobs:
       
     - name: Connection to cluster
       run: |
-        az acr login --name ${{ vars.CONTAINER_REGISTRY_NAME }}
+        az acr login --name ${{ vars.CONTAINER_REGISTRY_NAME }}${{ inputs.entorno }}
         az account set --subscription ${{ secrets.SUBSCRIPTION_ID }}
         az aks get-credentials --resource-group ${{ vars.COMMON_RESOURCE_GROUP_NAME }} --name ${{ vars.KUBERNETES_CLUSTER_NAME }} --overwrite-existing
         curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash

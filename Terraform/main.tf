@@ -147,8 +147,16 @@ resource "azurerm_linux_virtual_machine" "backup" {
   admin_password = var.secret_password
 }
 
-resource "azurerm_container_registry" "example" {
+resource "azurerm_container_registry" "azcr1" {
   name                = var.cr_name
+  resource_group_name = var.rg_name
+  location            = var.location
+  sku                 = var.cr_sku
+  admin_enabled       = var.cr_admin_enabled
+}
+
+resource "azurerm_container_registry" "azcr2" {
+  name                = var.cr_name_dev
   resource_group_name = var.rg_name
   location            = var.location
   sku                 = var.cr_sku
