@@ -6,3 +6,5 @@ resources:
   - service-concert.yaml
   - service-phpmyadmin.yaml
   - ingress-weekly.yaml
+  - datos-concert.yaml
+  - datos-phpmyadmin.yaml
