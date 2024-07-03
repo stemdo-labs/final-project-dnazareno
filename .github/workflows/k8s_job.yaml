@@ -32,6 +32,4 @@ jobs:
         sudo apt-get install build-essential
         brew install Azure/kubelogin/kubelogin
         kubelogin convert-kubeconfig -l azurecli
-        kubectl create secret docker-registry regcredprod --docker-server=${{ vars.CONTAINER_REGISTRY_SERVER_PROD }} --docker-username=${{ vars.CONTAINER_REGISTRY_USERNAME_PROD }} --docker-password=${{ secrets.CONTAINER_REGISTRY_PASSWORD_PROD }} -n ns-dnazareno
-        az acr login --name ${{ vars.CONTAINER_REGISTRY_NAME_DEV }}
-        kubectl create secret docker-registry regcreddev --docker-server=${{ vars.CONTAINER_REGISTRY_SERVER_DEV }} --docker-username=${{ vars.CONTAINER_REGISTRY_USERNAME_DEV }} --docker-password=${{ secrets.CONTAINER_REGISTRY_PASSWORD_DEV }} -n ns-dnazareno
+        kubectl delete deploy deploy-concert
