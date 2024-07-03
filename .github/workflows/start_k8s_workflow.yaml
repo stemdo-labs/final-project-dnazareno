@@ -31,7 +31,8 @@ jobs:
          sudo apt-get install build-essential
          brew install Azure/kubelogin/kubelogin
          kubelogin convert-kubeconfig -l azurecli
-         kubectl create secret docker-registry regcred --docker-server=${{ vars.CONTAINER_REGISTRY_SERVER }} --docker-username=${{ vars.CONTAINER_REGISTRY_USERNAME }} --docker-password=${{ secrets.CONTAINER_REGISTRY_PASSWORD }} -n ns-dnazareno
+         kubectl create secret docker-registry regcred --docker-server=${{ vars.CONTAINER_REGISTRY_SERVER_PROD }} --docker-username=${{ vars.CONTAINER_REGISTRY_USERNAME_PROD }} --docker-password=${{ secrets.CONTAINER_REGISTRY_PASSWORD_PROD }} -n ns-dnazareno
+         kubectl create secret docker-registry regcred --docker-server=${{ vars.CONTAINER_REGISTRY_SERVER_DEV }} --docker-username=${{ vars.CONTAINER_REGISTRY_USERNAME_DEV }} --docker-password=${{ secrets.CONTAINER_REGISTRY_PASSWORD_DEV }} -n ns-dnazareno
          kubectl get all -n ns-dnazareno
          kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.3.0/deploy/static/provider/cloud/deploy.yaml
          kubectl get service ingress-nginx-controller --namespace=ingress-nginx
