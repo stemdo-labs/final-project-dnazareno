@@ -36,25 +36,18 @@ jobs:
           echo $GITHUB_OUTPUT
           
 
-  # call-reusable-ci-workflow:
-  #   needs: build
-  #   uses: ./.github/workflows/dockerizacion_workflow.yaml
-  #   with:
-  #     tag: ${{ needs.build.outputs.tag }}
-  #   secrets: inherit
+  call-reusable-ci-workflow:
+    needs: build
+    uses: ./.github/workflows/dockerizacion_workflow.yaml
+    with:
+      tag: ${{ needs.build.outputs.tag }}
+    secrets: inherit
 
   CD-test:
-    #needs: [build,call-reusable-ci-workflow]
-    needs: [build]
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      
-      - name: Get version from package.json
-        run: | 
-          cat K8s/kustomize-base.yaml K8s/kustomize-dev.yaml > kustomization.yaml
-          kustomize build
-          kustomize build kubectl apply
+    needs: [build,call-reusable-ci-workflow]
+    uses: ./.github/workflows/k8s_kustomize_workflow.yaml
+    with:
+      tag: ${{ needs.build.outputs.tag }}
+    secrets: inherit
           
           
