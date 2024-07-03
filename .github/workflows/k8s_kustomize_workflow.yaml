@@ -1,4 +1,4 @@
-name: 'K8s job'
+name: 'K8s Deploy dev'
 on:  
   workflow_dispatch:
   workflow_call:
