@@ -45,6 +45,7 @@ jobs:
     uses: ./.github/workflows/dockerizacion_workflow.yaml
     with:
       tag: ${{ needs.build.outputs.tag }}
+      entorno: prod
     secrets: inherit
 
   CD-test:
