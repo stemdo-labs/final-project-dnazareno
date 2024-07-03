@@ -32,7 +32,6 @@ jobs:
         sudo apt-get install build-essential
         brew install Azure/kubelogin/kubelogin
         kubelogin convert-kubeconfig -l azurecli
-        kubectl get pods --namespace ingress-nginx
-        kubectl get service ingress-nginx-controller --namespace=ingress-nginx
-        kubectl apply -f K8s/ingress-weekly.yaml -n ns-dnazareno
+        cat kustomize-base.yaml kustomize-dev.yaml > kustomization.yaml
+        kustomize build
         kubectl get all -n ns-dnazareno
