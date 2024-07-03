@@ -4,3 +4,12 @@
 - op: replace
   path: /spec/template/metadata/labels/app
   value: concertapp-dev
+- op: replace
+  path: /spec/template/spec/containers/0/env/0/valueFrom/configMapKeyRef/name
+  value: datos-concert-dev
+- op: replace
+  path: /spec/template/spec/containers/0/env/1/valueFrom/configMapKeyRef/name
+  value: datos-concert-dev
+- op: replace
+  path: /spec/template/spec/containers/0/env/2/valueFrom/configMapKeyRef/name
+  value: datos-concert-dev

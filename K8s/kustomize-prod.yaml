@@ -3,4 +3,4 @@ labels:
 - includeSelectors: false
   pairs:
     entorno: prod
-    app: concertapp
+    app: datos-concert
