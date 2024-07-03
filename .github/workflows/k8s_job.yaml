@@ -22,7 +22,7 @@ jobs:
       
     - name: Connection to cluster
       run: |
-        az acr login --name ${{ vars.CONTAINER_REGISTRY_NAME }}
+        az acr login --name ${{ vars.CONTAINER_REGISTRY_NAME_PROD }}
         az account set --subscription ${{ secrets.SUBSCRIPTION_ID }}
         az aks get-credentials --resource-group ${{ vars.COMMON_RESOURCE_GROUP_NAME }} --name ${{ vars.KUBERNETES_CLUSTER_NAME }} --overwrite-existing
         curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
@@ -33,4 +33,5 @@ jobs:
         brew install Azure/kubelogin/kubelogin
         kubelogin convert-kubeconfig -l azurecli
         kubectl create secret docker-registry regcredprod --docker-server=${{ vars.CONTAINER_REGISTRY_SERVER_PROD }} --docker-username=${{ vars.CONTAINER_REGISTRY_USERNAME_PROD }} --docker-password=${{ secrets.CONTAINER_REGISTRY_PASSWORD_PROD }} -n ns-dnazareno
+        az acr login --name ${{ vars.CONTAINER_REGISTRY_NAME_DEV }}
         kubectl create secret docker-registry regcreddev --docker-server=${{ vars.CONTAINER_REGISTRY_SERVER_DEV }} --docker-username=${{ vars.CONTAINER_REGISTRY_USERNAME_DEV }} --docker-password=${{ secrets.CONTAINER_REGISTRY_PASSWORD_DEV }} -n ns-dnazareno
