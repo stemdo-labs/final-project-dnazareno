@@ -19,6 +19,10 @@ jobs:
       tag: ${{ steps.get_version.outputs.version }} #tag será un output
 
     steps:
+    
+      - name: Checkout
+        uses: actions/checkout@v4
+        
       - name: Pruebas unitarias
         run: echo "Tests unitarios superados con éxito"
 
