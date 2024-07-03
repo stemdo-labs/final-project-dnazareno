@@ -11,3 +11,11 @@ patches:
     group: networking.k8s.io
     version: v1
   path: kustomize-patches/ingress-patches-dev.yaml
+- target:
+    kind: Service
+    name: service-concert
+  path: kustomize-patches/services-patches-dev.yaml
+- target:
+    kind: Service
+    name: service-phpmyadmin
+  path: kustomize-patches/services-patches-dev.yaml
