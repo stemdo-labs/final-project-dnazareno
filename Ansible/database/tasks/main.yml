@@ -74,24 +74,16 @@
 
 - name: add sample data to database  
   copy: src=startquery.sql dest=/tmp/startquery.sql  
-  tags:
-    - initialquery
 
 - name: insert sample data into database  
   mysql_db: name="{{db_name}}" state=import target=/tmp/startquery.sql login_user=root login_password="{{ root_password }}"   
-  tags:
-    - initialquery
 
 - name: add sample data to database dev
   copy: src=startquerydev.sql dest=/tmp/startquerydev.sql  
-  tags:
-    - initialquery
   tags:
     - dev
 
 - name: insert sample data into database dev
   mysql_db: name="{{db_dev_name}}" state=import target=/tmp/startquerydev.sql login_user=root login_password="{{ root_password }}"   
-  tags:
-    - initialquery
   tags:
     - dev
