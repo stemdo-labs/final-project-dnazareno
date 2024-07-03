@@ -4,3 +4,10 @@ labels:
   pairs:
     entorno: dev
 nameSuffix: -dev
+patches:
+- target:
+    kind: Ingress
+    name: ingress-weekly
+    group: networking.k8s.io
+    version: v1
+  path: ingress-patches-dev.yaml
