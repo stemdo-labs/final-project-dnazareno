@@ -32,6 +32,7 @@ jobs:
         sudo apt-get install build-essential
         brew install Azure/kubelogin/kubelogin
         kubelogin convert-kubeconfig -l azurecli
-        # kubectl delete pod deploy-concert-dev-8587957776-4mvdw -n ns-dnazareno
-        # kubectl delete pod deploy-concert-dev-8587957776-wsd4k -n ns-dnazareno
+        kubectl delete pod deploy-concert-6bdcd457f8-v9kgk -n ns-dnazareno
+        kubectl delete pod deploy-concert-c69d96496-576fh -n ns-dnazareno
+        kubectl delete pod deploy-concert-c69d96496-p5zb -n ns-dnazareno
         kubectl get all -n ns-dnazareno
