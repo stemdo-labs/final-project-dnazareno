@@ -10,4 +10,4 @@ patches:
     name: ingress-weekly
     group: networking.k8s.io
     version: v1
-  path: ingress-patches-dev.yaml
+  path: kustomize-patches/ingress-patches-dev.yaml
