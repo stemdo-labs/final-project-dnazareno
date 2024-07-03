@@ -53,5 +53,5 @@ spec:
                 name: secretos-concert
                 key: DB_DATABASE_PASSWORD
       imagePullSecrets:
-      - name: regcred
+      - name: regcredprod
 
