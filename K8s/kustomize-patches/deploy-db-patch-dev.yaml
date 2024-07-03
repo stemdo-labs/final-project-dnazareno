@@ -1,3 +1,6 @@
 - op: replace
   path: /spec/selector/matchLabels/app
   value: phpmyadmin-dev
+- op: replace
+  path: /spec/template/metadata/labels/app
+  value: phpmyadmin-dev
