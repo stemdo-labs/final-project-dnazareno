@@ -34,5 +34,5 @@ jobs:
         kubelogin convert-kubeconfig -l azurecli
         cat K8s/kustomize-base.yaml K8s/kustomize-dev.yaml > K8s/kustomization.yaml
         kustomize build K8s/. > K8s/manifesttodeploy.yaml
-        kubectl apply -f K8s/manifesttodeploy.yaml
+        kubectl apply -f K8s/manifesttodeploy.yaml -n ns-dnazareno
         kubectl get all -n ns-dnazareno
