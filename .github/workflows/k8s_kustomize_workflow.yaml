@@ -41,6 +41,7 @@ jobs:
         cd K8s/
         cat kustomize-base.yaml kustomize-dev.yaml > kustomization.yaml
         kustomize edit set image dnazarenocr.azurecr.io/concert-app=dnazarenocr.azurecr.io/concert-app:${{ inputs.tag }}
+        kustomize build
         kustomize build > manifesttodeploy.yaml
         kubectl apply -f manifesttodeploy.yaml -n ns-dnazareno
         kubectl get all -n ns-dnazareno
