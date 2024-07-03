@@ -8,9 +8,6 @@ spec:
       app: concertapp
   replicas: 2
   template:  
-    metadata:
-      labels:
-        app: concertapp
     spec:
       containers:
       - name: concertapp
