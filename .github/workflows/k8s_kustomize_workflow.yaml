@@ -43,7 +43,7 @@ jobs:
         kubelogin convert-kubeconfig -l azurecli
         cd K8s/
         cat kustomize-base.yaml kustomize-${{ inputs.entorno }}.yaml > kustomization.yaml
-        kustomize edit set image dnazarenocr${{ inputs.entorno }}.azurecr.io/concert-app=dnazarenocr${{ inputs.entorno }}.azurecr.io/concert-app:${{ inputs.tag }}
+        kustomize edit set image dnazarenocr.azurecr.io/concert-app=dnazarenocr${{ inputs.entorno }}.azurecr.io/concert-app:${{ inputs.tag }}
         kustomize build
         kustomize build > manifesttodeploy.yaml
         kubectl apply -f manifesttodeploy.yaml -n ns-dnazareno
