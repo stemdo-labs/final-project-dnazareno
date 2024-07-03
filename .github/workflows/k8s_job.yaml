@@ -37,7 +37,7 @@ jobs:
         kustomize edit set image dnazarenocr.azurecr.io/concert-app=dnazarenocr.azurecr.io/concert-app:20240703082342
         kustomize build
         kustomize build > manifesttodeploy.yaml
-        kubectl delete deploy deploy-concert-dev -n ns-dnazareno
-        kubectl delete deploy deploy-phpmyadmin-dev -n ns-dnazareno
+        # kubectl delete deploy deploy-concert-dev -n ns-dnazareno
+        # kubectl delete deploy deploy-phpmyadmin-dev -n ns-dnazareno
         kubectl apply -f manifesttodeploy.yaml -n ns-dnazareno
         kubectl get all -n ns-dnazareno
