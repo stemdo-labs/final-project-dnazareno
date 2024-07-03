@@ -32,13 +32,5 @@ jobs:
         sudo apt-get install build-essential
         brew install Azure/kubelogin/kubelogin
         kubelogin convert-kubeconfig -l azurecli
-        cd K8s/
-        cat kustomize-base.yaml kustomize-dev.yaml > kustomization.yaml
-        kustomize build
-        kustomize edit set image dnazarenocr.azurecr.io/concert-app=dnazarenocr.azurecr.io/concert-app:20240703082342
-        kustomize build
-        kustomize build > manifesttodeploy.yaml
-        kubectl delete deploy deploy-concert-dev -n ns-dnazareno
-        kubectl delete deploy deploy-phpmyadmin-dev -n ns-dnazareno
-        kubectl apply -f manifesttodeploy.yaml -n ns-dnazareno
-        kubectl get all -n ns-dnazareno
+        kubectl create secret docker-registry regcredprod --docker-server=${{ vars.CONTAINER_REGISTRY_SERVER_PROD }} --docker-username=${{ vars.CONTAINER_REGISTRY_USERNAME_PROD }} --docker-password=${{ secrets.CONTAINER_REGISTRY_PASSWORD_PROD }} -n ns-dnazareno
+        kubectl create secret docker-registry regcreddev --docker-server=${{ vars.CONTAINER_REGISTRY_SERVER_DEV }} --docker-username=${{ vars.CONTAINER_REGISTRY_USERNAME_DEV }} --docker-password=${{ secrets.CONTAINER_REGISTRY_PASSWORD_DEV }} -n ns-dnazareno
