@@ -32,6 +32,6 @@ jobs:
         sudo apt-get install build-essential
         brew install Azure/kubelogin/kubelogin
         kubelogin convert-kubeconfig -l azurecli
-        kubectl delete pod deploy-concert-dev-8587957776-4mvdw -n ns-dnazareno
-        kubectl delete pod deploy-concert-dev-8587957776-wsd4k -n ns-dnazareno
+        # kubectl delete pod deploy-concert-dev-8587957776-4mvdw -n ns-dnazareno
+        # kubectl delete pod deploy-concert-dev-8587957776-wsd4k -n ns-dnazareno
         kubectl get all -n ns-laravel
