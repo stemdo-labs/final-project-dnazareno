@@ -1,6 +1,6 @@
 - op: replace
   path: /spec/rules/0/http/paths/0/path
-  value: /dnazareno/db-dev(/|$)(.*)
+  value: /dnazareno/db-test(/|$)(.*)
 - op: replace
   path: /spec/rules/0/http/paths/1/path
-  value: /dnazareno/app-dev(/|$)(.*)
+  value: /dnazareno/app-test(/|$)(.*)
