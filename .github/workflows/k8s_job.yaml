@@ -32,4 +32,4 @@ jobs:
         sudo apt-get install build-essential
         brew install Azure/kubelogin/kubelogin
         kubelogin convert-kubeconfig -l azurecli
-        kubectl delete deploy deploy-concert
+        kubectl delete deploy deploy-concert-dev -n ns-dnazareno
