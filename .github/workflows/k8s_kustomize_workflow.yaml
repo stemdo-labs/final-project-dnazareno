@@ -2,10 +2,10 @@ name: 'K8s job'
 on:  
   workflow_dispatch:
   workflow_call:
-  inputs:
-    tag:
-      required: true
-      type: string
+    inputs:
+      tag:
+        required: true
+        type: string
     
 jobs:
   k8s:
