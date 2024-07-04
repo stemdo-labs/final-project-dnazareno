@@ -36,5 +36,5 @@ jobs:
       - name: Get version from package.json
         id: get_version
         run: | 
-          echo "version=$(jq -r .version concert-app/composer.json)" >> "$GITHUB_OUTPUT"
+          echo "version=$(date +'%Y%m%d%H%M%S')" >> "$GITHUB_OUTPUT"
           echo $GITHUB_OUTPUT
