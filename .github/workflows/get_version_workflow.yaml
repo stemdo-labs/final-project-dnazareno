@@ -5,7 +5,6 @@ on:
     # Map the workflow outputs to job outputs
     outputs:
       tag:
-        description: "The first output string"
         value: ${{ jobs.get_version.outputs.tag }}
 
 jobs:
@@ -14,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     # Map the job outputs to step outputs
     outputs:
-      tag: ${{ steps.step1.outputs.version }}
+      tag: ${{ steps.get_version.outputs.version }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
