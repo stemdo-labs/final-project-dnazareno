@@ -53,7 +53,7 @@ jobs:
     uses: ./.github/workflows/k8s_kustomize_workflow.yaml
     with:
       # tag: ${{ needs.build.outputs.tag }}
-      tag: echo "${{ jobs.get_version.steps.get_version.outputs.version }}"
+      tag: ${{ jobs.get_version.steps.get_version.outputs.version }}
       entorno: dev
     secrets: inherit
           
