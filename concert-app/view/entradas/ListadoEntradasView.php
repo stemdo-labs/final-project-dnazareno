@@ -8,7 +8,7 @@
     </head>
     <body>
         <div class="container">
-            <h1 class="text-center">LISTADO DE ENTRADAS!! (entorno NO productivo) Prueba5</h1>
+            <h1 class="text-center">LISTADO DE ENTRADAS!! (entorno NO productivo) Prueba6</h1>
             
     <?php
             // comprobamos que las dos variables con las consultas no estén vacías
