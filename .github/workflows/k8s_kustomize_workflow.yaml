@@ -46,6 +46,9 @@ jobs:
         kustomize edit set image dnazarenocr.azurecr.io/concert-app=dnazarenocr${{ inputs.entorno }}.azurecr.io/concert-app:${{ inputs.tag }}
         kustomize build
         kustomize build > manifesttodeploy.yaml
+        kubectl apply -f datos-phpmyadmin.yaml -n ns-dnazareno
+        kubectl apply -f secretos-concert.yaml -n ns-dnazareno
+        kubectl apply -f secretos-phpmyadmin.yaml -n ns-dnazareno
         kubectl apply -f manifesttodeploy.yaml -n ns-dnazareno
         kubectl get all -n ns-dnazareno
         kubectl get service ingress-nginx-controller --namespace=ingress-nginx
