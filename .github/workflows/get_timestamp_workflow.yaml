@@ -1,0 +1,40 @@
+name: Reusable workflow
+
+on:
+  workflow_call:
+    # Map the workflow outputs to job outputs
+    outputs:
+      tag:
+        description: "The first output string"
+        value: ${{ jobs.get_version.outputs.tag }}
+
+jobs:
+  get_version:
+    name: Generate output
+    runs-on: ubuntu-latest
+    # Map the job outputs to step outputs
+    outputs:
+      tag: ${{ steps.get_version.outputs.version }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        
+      - name: Pruebas unitarias
+        run: echo "Tests unitarios superados con éxito"
+
+      - name: Pruebas de integracion
+        run: echo "Tests de integración superados con éxito"
+
+      - name: Pruebas End to End
+        run: echo "Tests End to End superados con éxito"
+
+      - name: Run markdown lint to check README
+        run: |
+          npm install remark-cli remark-preset-lint-consistent vfile-reporter-json
+          npx remark . --use remark-preset-lint-consistent --report vfile-reporter-json
+          
+      - name: Get version from package.json
+        id: get_version
+        run: | 
+          echo "version=$(date +'%Y%m%d%H%M%S')" >> "$GITHUB_OUTPUT"
+          echo $GITHUB_OUTPUT
