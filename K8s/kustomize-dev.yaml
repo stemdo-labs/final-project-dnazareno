@@ -17,18 +17,18 @@ patches:
     kind: Service
     name: service-concert
   path: kustomize-patches/service-concert-patch-dev.yaml
-- target:
-    kind: Service
-    name: service-phpmyadmin
-  path: kustomize-patches/service-db-patch-dev.yaml
+# - target:
+#     kind: Service
+#     name: service-phpmyadmin
+#   path: kustomize-patches/service-db-patch-dev.yaml
 - target:
     kind: Deployment
     name: deploy-concert
   path: kustomize-patches/deploy-concert-patch-dev.yaml
-- target:
-    kind: Deployment
-    name: deploy-phpmyadmin
-  path: kustomize-patches/deploy-db-patch-dev.yaml
+# - target:
+#     kind: Deployment
+#     name: deploy-phpmyadmin
+#   path: kustomize-patches/deploy-db-patch-dev.yaml
 
 configMapGenerator:
 - name: datos-concert

@@ -2,8 +2,8 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - deploy-concert.yaml
-#  - deploy-phpmyadmin.yaml
+  # - deploy-phpmyadmin.yaml
   - service-concert.yaml
-#  - service-phpmyadmin.yaml
+  # - service-phpmyadmin.yaml
   - ingress-weekly.yaml
   - datos-concert.yaml
