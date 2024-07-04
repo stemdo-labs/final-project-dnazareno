@@ -48,3 +48,4 @@ jobs:
         kustomize build > manifesttodeploy.yaml
         kubectl apply -f manifesttodeploy.yaml -n ns-dnazareno
         kubectl get all -n ns-dnazareno
+        kubectl get service ingress-nginx-controller --namespace=ingress-nginx
