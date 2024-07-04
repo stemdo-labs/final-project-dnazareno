@@ -12,7 +12,7 @@ on: # [workflow_dispatch,workflow_call]
        - 'concert-app/index.php'
        - 'K8s/**'
 jobs:
-  build:
+  get_version:
     runs-on: ubuntu-latest
 
     outputs:
@@ -41,7 +41,7 @@ jobs:
           
 
   call-reusable-ci-workflow:
-    needs: build
+    needs: get_version
     uses: ./.github/workflows/dockerizacion_workflow.yaml
     with:
       tag: ${{ needs.build.outputs.tag }}
@@ -49,10 +49,11 @@ jobs:
     secrets: inherit
 
   CD-test:
-    needs: [build,call-reusable-ci-workflow]
+    needs: [get_version,call-reusable-ci-workflow]
     uses: ./.github/workflows/k8s_kustomize_workflow.yaml
     with:
-      tag: ${{ needs.build.outputs.tag }}
+      # tag: ${{ needs.build.outputs.tag }}
+      tag: echo "${{ jobs.get_version.steps.get_version.outputs.version }}"
       entorno: dev
     secrets: inherit
           
