@@ -17,7 +17,7 @@ jobs:
 
   call-reusable-ci-workflow:
     needs: get_version
-    uses: ./.github/workflows/get_version_workflow.yaml
+    uses: ./.github/workflows/dockerizacion_workflow.yaml
     with:
       tag: ${{ needs.get_version.outputs.tag }}
       entorno: dev
