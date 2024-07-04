@@ -27,8 +27,7 @@ jobs:
     needs: [get_version,call-reusable-ci-workflow]
     uses: ./.github/workflows/k8s_kustomize_workflow.yaml
     with:
-      # tag: ${{ needs.get_version.outputs.tag }}
-      tag: ${{ jobs.get_version.steps.get_version.outputs.version }}
+      tag: ${{ needs.get_version.outputs.tag }}
       entorno: dev
     secrets: inherit
           
