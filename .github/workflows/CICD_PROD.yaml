@@ -13,7 +13,7 @@ on: # [workflow_dispatch,workflow_call]
        - 'K8s/**'
 jobs:
   get_version:
-    uses: ./.github/workflows/dockerizacion_workflow.yaml
+    uses: ./.github/workflows/get_version_workflow.yaml
 
   call-reusable-ci-workflow:
     needs: get_version
