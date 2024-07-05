@@ -13,7 +13,7 @@ jobs:
  
     steps:
     - uses: actions/checkout@v4
-    - uses: stemdo-labs/composite-actions-dnazareno@v1
+    - uses: stemdo-labs/composite-actions-dnazareno@main
       with:
         PRIVATE_IP_VMDB: ${{ vars.PRIVATE_IP_VMDB }}
         VM1_PASS: ${{ secrets.VM1_PASS }}
