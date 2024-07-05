@@ -1,9 +1,16 @@
 name: Get Version
-
 on:
   pull_request:
     type: opened
-    branch: 
+     branches: 
+       - 'main'
+     paths:
+       - 'concert-app/controller/**'
+       - 'concert-app/model/**'
+       - 'concert-app/view/**'
+       - 'concert-app/Dockerfile'
+       - 'concert-app/index.php'
+       - 'K8s/**'
 jobs:
   checks:
     name: Checks
