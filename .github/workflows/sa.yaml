@@ -12,6 +12,7 @@ jobs:
         shell: bash
  
     steps:
+    - uses: actions/checkout@v4
     - uses: stemdo-labs/composite-actions-dnazareno@v1
       with:
         PRIVATE_IP_VMDB: ${{ vars.PRIVATE_IP_VMDB }}
