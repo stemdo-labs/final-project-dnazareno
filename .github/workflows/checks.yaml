@@ -1,4 +1,4 @@
-name: Get Version
+name: Checks
 on:
   pull_request:
     type: opened
