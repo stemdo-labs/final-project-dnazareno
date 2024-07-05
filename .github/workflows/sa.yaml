@@ -14,7 +14,10 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v4
-        
+      
+    - name: ls
+      run: |       
+          ls
     - uses: ./.github/actions/composite-actions-dnazareno
       with:
         PRIVATE_IP_VMDB: ${{ vars.PRIVATE_IP_VMDB }}
