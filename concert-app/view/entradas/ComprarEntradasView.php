@@ -10,7 +10,7 @@
             <!-- CREACIÓN DE FORMULARIO -->
             <form action="index.php?controlador=entradas&action=add" method=post>
                 <fieldset>
-                    <legend><h2>COMPRA DE ENTRADAS!! (entorno NO productivo)</h2></legend>
+                    <legend><h2>COMPRA DE ENTRADAS!!</h2></legend>
                     
                     <label>Nombre:</label><br/>
                     <!-- En el value indico con php que me inserte el valor en el input en caso de que hubiese -->
