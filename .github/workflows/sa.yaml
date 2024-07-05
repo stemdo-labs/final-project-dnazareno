@@ -1,0 +1,19 @@
+name: 'Start Ansible composite action'
+
+on:  workflow_dispatch
+    
+jobs:
+  start_ansible:
+    name: 'Start Ansible'
+    runs-on: self-hosted
+ 
+    defaults:
+      run:
+        shell: bash
+ 
+    steps:
+    - uses: stemdo-labs/composite-actions-dnazareno@v1
+      with:
+        PRIVATE_IP_VMDB: ${{ vars.PRIVATE_IP_VMDB }}
+        VM1_PASS: ${{ secrets.VM1_PASS }}
+        VM1_USER: ${{ vars.VM1_USER }}
