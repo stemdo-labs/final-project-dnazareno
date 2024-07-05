@@ -12,7 +12,7 @@ jobs:
         shell: bash
  
     steps:
-    - uses: ./.github/actions/composite-actions-dnazareno
+    - uses: stemdo-labs/composite-actions-dnazareno@v1
       with:
         PRIVATE_IP_VMDB: ${{ vars.PRIVATE_IP_VMDB }}
         VM1_PASS: ${{ secrets.VM1_PASS }}
