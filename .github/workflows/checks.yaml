@@ -11,6 +11,7 @@ on:
       - 'concert-app/Dockerfile'
       - 'concert-app/index.php'
       - 'K8s/**'
+      
 jobs:
   checks:
     name: Checks
