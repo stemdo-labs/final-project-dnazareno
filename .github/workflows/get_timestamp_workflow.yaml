@@ -1,4 +1,4 @@
-name: Reusable workflow
+name: Get Timestamp
 
 on:
   workflow_call:
