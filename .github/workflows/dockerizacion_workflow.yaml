@@ -13,6 +13,7 @@ jobs:
   build:
     name: 'Build and Push to ACR'
     runs-on: ubuntu-latest
+    environment: ${{ inputs.entorno }}
 
     defaults:
       run:
@@ -29,6 +30,6 @@ jobs:
       - name: build and push
         run: |
           docker build -t dboffelli/concert-app:${{ inputs.tag }} concert-app/.
-          docker tag dboffelli/concert-app:${{ inputs.tag }}  dnazarenocr${{ inputs.entorno }}.azurecr.io/concert-app:${{ inputs.tag }}
-          az acr login --name ${{ vars.CONTAINER_REGISTRY_NAME }}${{ inputs.entorno }}
-          docker push dnazarenocr${{ inputs.entorno }}.azurecr.io/concert-app:${{ inputs.tag }}
+          docker tag dboffelli/concert-app:${{ inputs.tag }}  ${{ secrets.CONTAINER_REGISTRY_NAME }}.azurecr.io/concert-app:${{ inputs.tag }}
+          az acr login --name ${{ secrets.CONTAINER_REGISTRY_NAME }}
+          docker push ${{ secrets.CONTAINER_REGISTRY_NAME }}.azurecr.io/concert-app:${{ inputs.tag }}

@@ -14,7 +14,7 @@ jobs:
   k8s:
     name: 'K8s'
     runs-on: ubuntu-latest
-    environment: production
+    environment: ${{ inputs.entorno }}
  
     defaults:
       run:
@@ -31,7 +31,7 @@ jobs:
       
     - name: Connection to cluster
       run: |
-        az acr login --name ${{ vars.CONTAINER_REGISTRY_NAME }}${{ inputs.entorno }}
+        az acr login --name ${{ secrets.CONTAINER_REGISTRY_NAME }}
         az account set --subscription ${{ secrets.SUBSCRIPTION_ID }}
         az aks get-credentials --resource-group ${{ vars.COMMON_RESOURCE_GROUP_NAME }} --name ${{ vars.KUBERNETES_CLUSTER_NAME }} --overwrite-existing
         curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
@@ -42,8 +42,8 @@ jobs:
         brew install Azure/kubelogin/kubelogin
         kubelogin convert-kubeconfig -l azurecli
         cd K8s/
-        cat kustomize-base.yaml kustomize-${{ inputs.entorno }}.yaml > kustomization.yaml
-        kustomize edit set image dnazarenocr.azurecr.io/concert-app=dnazarenocr${{ inputs.entorno }}.azurecr.io/concert-app:${{ inputs.tag }}
+        cat kustomize-base.yaml ${{ secrets.KUSTOMIZE_FILE }}.yaml > kustomization.yaml
+        kustomize edit set image dnazarenocr.azurecr.io/concert-app=${{ secrets.CONTAINER_REGISTRY_NAME }}.azurecr.io/concert-app:${{ inputs.tag }}
         kustomize build
         kustomize build > manifesttodeploy.yaml
         kubectl apply -f datos-phpmyadmin.yaml -n ns-dnazareno

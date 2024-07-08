@@ -17,7 +17,7 @@ runs:
         id: get_version
         run: | 
          # echo "version=$(jq -r .version concert-app/composer.json)" >> "$GITHUB_OUTPUT"
-          if [ "${{ inputs.entorno }}" == "dev" ]; then
+          if [ "${{ inputs.entorno }}" == "develop" ]; then
             echo "version=$(date +'%Y%m%d%H%M%S')" >> "$GITHUB_OUTPUT"
           else
             # sudo apt-get update && sudo apt-get install -y jq
