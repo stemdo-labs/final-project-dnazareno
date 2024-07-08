@@ -13,7 +13,10 @@ on: # [workflow_dispatch,workflow_call]
        - 'K8s/**'
 jobs:
   get_version:
-    uses: ./.github/workflows/get_timestamp_workflow.yaml
+    # uses: ./.github/workflows/get_timestamp_workflow.yaml
+    uses: ./.github/workflows/get_version_workflow.yaml
+    with:
+      entorno: dev
 
   call-reusable-ci-workflow:
     needs: get_version
