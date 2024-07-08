@@ -28,7 +28,7 @@ jobs:
         id: get_version
         uses: ./.github/actions/get-version
         with:
-            entorno: prod
+            entorno: production
 
   call-reusable-ci-workflow:
    needs: [call-reusable-checks-workflow,get_version]
@@ -43,7 +43,7 @@ jobs:
     uses: ./.github/workflows/k8s_kustomize_workflow.yaml
     with:
       tag: ${{ needs.get_version.outputs.tag }}
-      entorno: prod
+      entorno: production
     secrets: inherit
           
           
