@@ -2,7 +2,10 @@ name: Get Version
 
 on:
   workflow_call:
-    # Map the workflow outputs to job outputs
+    inputs:
+      entorno:
+        required: true
+        type: string
     outputs:
       tag:
         value: ${{ jobs.get_version.outputs.tag }}
@@ -35,5 +38,10 @@ jobs:
       - name: Get version from package.json
         id: get_version
         run: | 
-          echo "version=$(jq -r .version concert-app/composer.json)" >> "$GITHUB_OUTPUT"
-          echo $GITHUB_OUTPUT
+         # echo "version=$(jq -r .version concert-app/composer.json)" >> "$GITHUB_OUTPUT"
+          if [ "${{ inputs.entorno }}" == "dev" ]; then
+            echo "version=$(date +'%Y%m%d%H%M%S')" >> "$GITHUB_OUTPUT"
+          else
+            # sudo apt-get update && sudo apt-get install -y jq
+            echo "version=$(jq -r .version concert-app/composer.json)" >> "$GITHUB_OUTPUT"
+          fi
