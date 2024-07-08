@@ -1,0 +1,35 @@
+name: Dockerizacion
+on:
+  workflow_call:
+    inputs:
+      tag:
+        required: true
+        type: string
+      entorno:
+        required: true
+        type: string
+#on:  workflow_dispatch
+jobs:
+  build:
+    name: 'Build and Push to ACR'
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.entorno }}
+
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - uses: azure/login@v2
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: build and push
+        run: |
+          docker build -t dboffelli/concert-app:${{ inputs.tag }} concert-app/.
+          docker tag dboffelli/concert-app:${{ inputs.tag }}  ${{ secrets.CONTAINER_REGISTRY_NAME }}.azurecr.io/concert-app:${{ inputs.tag }}
+          az acr login --name ${{ secrets.CONTAINER_REGISTRY_NAME }}
+          docker push ${{ secrets.CONTAINER_REGISTRY_NAME }}.azurecr.io/concert-app:${{ inputs.tag }}
