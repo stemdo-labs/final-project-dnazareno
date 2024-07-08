@@ -1,9 +1,10 @@
 name: Checks
 on:
-  pull_request:
-    types: [opened,reopened]
-    branches: 
-      - 'main'
+  workflow_call:
+  # pull_request:
+    # types: [opened,reopened]
+    # branches: 
+      # - 'main'
       
 jobs:
   checks:
