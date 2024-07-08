@@ -43,9 +43,9 @@ jobs:
    with:
       tag: ${{ needs.get_version.outputs.tag }}
       entorno: develop
-   secrets: 
+   secrets: inherit
      # CONTAINER_REGISTRY_NAME: ${{ secrets.CONTAINER_REGISTRY_NAME }}
-      AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
+     # AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
       
 
   CD-test:
