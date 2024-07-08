@@ -13,9 +13,18 @@ on: # [workflow_dispatch,workflow_call]
        - 'K8s/**'
 jobs:
   get_version:
-    uses: ./.github/workflows/get_version_workflow.yaml
-    with:
-      entorno: prod
+    runs-on: ubuntu-latest
+    outputs:
+      tag: ${{ steps.get_version.outputs.tag }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Get Version
+        id: get_version
+        uses: ./.github/actions/get-version
+        with:
+            entorno: prod
 
   call-reusable-ci-workflow:
     needs: get_version
