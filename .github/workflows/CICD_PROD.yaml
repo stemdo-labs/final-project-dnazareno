@@ -31,12 +31,21 @@ jobs:
             entorno: prod
 
   call-reusable-ci-workflow:
-    needs: [call-reusable-checks-workflow,get_version]
-    uses: ./.github/workflows/dockerizacion_workflow.yaml
-    with:
+    # needs: [call-reusable-checks-workflow,get_version]
+    # uses: ./.github/workflows/dockerizacion_workflow.yaml
+    # with:
+      # tag: ${{ needs.get_version.outputs.tag }}
+      # entorno: prod
+    # secrets: inherit
+    
+   needs: [call-reusable-checks-workflow,get_version]
+   uses: ./.github/workflows/d2.yaml
+   with:
       tag: ${{ needs.get_version.outputs.tag }}
-      entorno: prod
-    secrets: inherit
+      entorno: production
+   secrets: inherit
+     # CONTAINER_REGISTRY_NAME: ${{ secrets.CONTAINER_REGISTRY_NAME }}
+     # AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
 
   CD-test:
     needs: [call-reusable-checks-workflow,get_version,call-reusable-ci-workflow]
