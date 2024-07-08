@@ -25,16 +25,11 @@ jobs:
 #        sshpass -p "${{ secrets.VM1_PASS }}" ssh-copy-id ${{ vars.VM1_USER }}@${{ vars.PRIVATE_IP_VMDB }}
         
     - uses: actions/checkout@v4
-    - name: Checkout tools repo
-      uses: actions/checkout@v3
-      with:
-        repository: ${{ github.repository }}
-        path: .github/
-    # - uses: stemdo-labs/composite-actions-dnazareno@main
     - name: Deploying ansible on vm backup
       run: |
           ls
-    - uses: ./.github/actions/composite-actions-dnazareno
+    # - uses: ./.github/actions/composite-actions-dnazareno
+    - uses: stemdo-labs/composite-actions-dnazareno@main
       with:
         PRIVATE_IP_VMDB: ${{ vars.PRIVATE_IP_VMDB }}
         VM1_PASS: ${{ secrets.VM1_PASS }}
