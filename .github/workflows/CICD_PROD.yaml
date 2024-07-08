@@ -14,6 +14,8 @@ on: # [workflow_dispatch,workflow_call]
 jobs:
   get_version:
     uses: ./.github/workflows/get_version_workflow.yaml
+    with:
+      entorno: prod
 
   call-reusable-ci-workflow:
     needs: get_version
