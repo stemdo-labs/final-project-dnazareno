@@ -28,4 +28,3 @@ jobs:
           git add concert-app/composer.json
           git commit -m "Bump version to $new_version"
           git push
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
