@@ -46,4 +46,6 @@ jobs:
       entorno: production
     secrets: inherit
           
-          
+  call-reusable-updater-workflow:
+     needs: [call-reusable-checks-workflow,get_version,call-reusable-ci-workflow,CD-test]
+     uses: ./.github/workflows/upload_composer_workflow.yaml
