@@ -12,7 +12,8 @@ on:
 jobs:
   update-version:
     runs-on: ubuntu-latest
-    permissions: write-all
+    permissions: # write-all
+      contents: write
     steps:
       - uses: actions/checkout@v4
         with:
