@@ -1,0 +1,29 @@
+name: Update Composer Version
+
+on:
+  workflow_call:
+    inputs:
+      environment:
+        description: 'Environment to update'
+        required: true
+        type: string
+
+jobs:
+  update-version:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: dev
+
+      - name: Bump version in composer.json
+        run: |
+          version=$(jq -r .version concert-app/composer.json)
+          new_version=$(echo $version | awk -F. -v OFS=. '{$NF += 1 ; print}')
+          sed -i "s/\"version\": \"$version\"/\"version\": \"$new_version\"/" concert-app/composer.json
+          git config --global user.email "dnazareno@stemdo.io"
+          git config --global user.name "davidnboffelli"
+          git add concert-app/composer.json
+          git commit -m "Bump version to $new_version"
+          git push
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
