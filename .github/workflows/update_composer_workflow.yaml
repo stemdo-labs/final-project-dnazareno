@@ -3,16 +3,11 @@ name: Update Composer Version
 on:
   workflow_dispatch:
   workflow_call:
-    inputs:
-      environment:
-        description: 'Environment to update'
-        required: true
-        type: string
 
 jobs:
   update-version:
     runs-on: ubuntu-latest
-    permissions: # write-all
+    permissions:
       contents: write
     steps:
       - uses: actions/checkout@v4
