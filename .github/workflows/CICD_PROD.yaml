@@ -49,3 +49,5 @@ jobs:
   call-reusable-updater-workflow:
      needs: [call-reusable-checks-workflow,get_version,call-reusable-ci-workflow,CD-test]
      uses: ./.github/workflows/update_composer_workflow.yaml
+     permissions:
+      contents: write
