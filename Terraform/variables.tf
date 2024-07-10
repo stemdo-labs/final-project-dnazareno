@@ -102,10 +102,10 @@ variable "lb_sku" {
   default = "Basic"
 }
 
-variable "secret_password" {
-  type = string
-  default = "123@Abc"
-}
+# variable "secret_password" {
+#   type = string
+#   default = "123@Abc"
+# }
 
 variable "publicip_name1" {
   type = string
