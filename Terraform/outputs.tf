@@ -19,3 +19,7 @@ output "cr2_admin_password" {
   value       = azurerm_container_registry.azcr2.admin_password
   sensitive   = true
 }
+
+output "public_ip_address" {
+  value       = azurerm_public_ip.publicip1.ip_address
+}
