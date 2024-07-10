@@ -11,8 +11,13 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v4
-        with:
-          ref: dnazareno
+        #with:
+          # ref: dnazareno
+      - name: Recreating dev branch
+        run: |
+          git branch -d dnazareno
+          git push origin --delete dnazareno
+          git checkout -b dnazareno main
 
       - name: Bump version in composer.json
         run: |
@@ -24,3 +29,4 @@ jobs:
           git add concert-app/composer.json
           git commit -m "Bump version to $new_version"
           git push
+          
