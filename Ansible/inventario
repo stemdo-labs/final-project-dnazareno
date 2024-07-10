@@ -1,2 +1,2 @@
 [grupodatabase]
-nodo1 ansible_host=10.0.27.4 ansible_user=vm1user ansible_become_password="123@Abc"
+nodo1 ansible_host=10.0.27.4 ansible_user=vm1user ansible_become_password={{ vmpass }}
