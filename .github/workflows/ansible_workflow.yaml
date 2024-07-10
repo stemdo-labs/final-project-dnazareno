@@ -20,5 +20,5 @@ jobs:
       
     - name: Deploy
       run: |
-        ${{ secrets.ANSIBLE_VAULT_KEY }} > Ansible/pass.yaml
+        echo ${{ secrets.ANSIBLE_VAULT_KEY }} > Ansible/pass.yaml
         ansible-playbook -i Ansible/inventario Ansible/database_playbook.yaml --vault-password-file Ansible/pass.yaml
