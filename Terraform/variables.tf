@@ -102,11 +102,6 @@ variable "lb_sku" {
   default = "Basic"
 }
 
-# variable "secret_password" {
-#   type = string
-#   default = "123@Abc"
-# }
-
 variable "publicip_name1" {
   type = string
   default = "dnazareno_publicip1"
@@ -135,4 +130,19 @@ variable "cr_sku" {
 variable "cr_admin_enabled" {
   type = bool
   default = true
+}
+
+variable "dkv_name" {
+  type = string
+  default = "akv-dnazareno-dvfinlab"
+}
+
+variable "dkv_rg_name" {
+  type = string
+  default = "rg-dnazareno-dvfinlab"
+}
+
+variable "dkv_vmpass" {
+  type = string
+  default = "vmpass"
 }
