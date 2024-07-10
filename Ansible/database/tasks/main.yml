@@ -1,4 +1,10 @@
 ---
+- name: Cargar variables
+  include_vars:
+    file: vars.yaml
+  tags:
+    - dev
+    
 - name: Update apt cache
   apt:
     update_cache: yes
@@ -19,12 +25,6 @@
      name: mysql
      state: started
      enabled: yes
-
-- name: Cargar variables
-  include_vars:
-    file: vars.yaml
-  tags:
-    - dev
     
 - name: Set root user password
   mysql_user:
