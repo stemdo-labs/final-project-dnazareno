@@ -1,11 +1,12 @@
 name: CD Terraform
 
-on: [workflow_dispatch,workflow_call]
-  # push:
-  #   branches: 
-  #     - 'main'
-  #   paths:
-  #     - 'Terraform/**'
+on: 
+  workflow_dispatch:
+  push:
+    branches: 
+      - 'main'
+    paths:
+      - 'Terraform/**'
     
 jobs:
   terraform:
