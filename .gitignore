@@ -12,6 +12,6 @@
 
 # Any plan files created during the execution of terraform plan -out=...
 **/terraform.tfplan
-
+**/Terraform/plan
 # Ignore all sensitive.auto.tfvars files
 **/sensitive.auto.tfvars

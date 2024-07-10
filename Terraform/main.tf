@@ -97,6 +97,16 @@ resource "azurerm_network_interface_security_group_association" "example2" {
   network_security_group_id = azurerm_network_security_group.aznsc.id
 }
 
+data "azurerm_key_vault" "dvinlabkv" {
+  name                = "akv-dnazareno-dvfinlab"
+  resource_group_name = "rg-dnazareno-dvfinlab"
+}
+
+data "azurerm_key_vault_secret" "getvmpass" {
+  name      = "vmpass"
+  key_vault_id = data.azurerm_key_vault.dvinlabkv.id
+}
+
 resource "azurerm_linux_virtual_machine" "db" {
   depends_on = [ azurerm_network_interface.aznic ]
   for_each = var.maquinasvirtuales
@@ -119,7 +129,8 @@ resource "azurerm_linux_virtual_machine" "db" {
     storage_account_type = var.vm_disk_storage_account_type
   }
   disable_password_authentication = false
-  admin_password = var.secret_password
+  # admin_password = var.secret_password
+  admin_password = "${data.azurerm_key_vault_secret.getvmpass.value}"
 }
 
 resource "azurerm_linux_virtual_machine" "backup" {
@@ -144,7 +155,8 @@ resource "azurerm_linux_virtual_machine" "backup" {
     storage_account_type = var.vm_disk_storage_account_type
   }
   disable_password_authentication = false
-  admin_password = var.secret_password
+  # admin_password = var.secret_password
+  admin_password = "${data.azurerm_key_vault_secret.getvmpass.value}"
 }
 
 resource "azurerm_container_registry" "azcr1" {
