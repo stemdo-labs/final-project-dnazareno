@@ -28,5 +28,5 @@ jobs:
           git config --global user.name "davidnboffelli"
           git add concert-app/composer.json
           git commit -m "Bump version to $new_version"
-          git push
+          git push --set-upstream origin dnazareno
           
