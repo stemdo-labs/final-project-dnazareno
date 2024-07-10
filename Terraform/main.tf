@@ -98,12 +98,12 @@ resource "azurerm_network_interface_security_group_association" "example2" {
 }
 
 data "azurerm_key_vault" "dvinlabkv" {
-  name                = "akv-dnazareno-dvfinlab"
-  resource_group_name = "rg-dnazareno-dvfinlab"
+  name                = var.dkv_name
+  resource_group_name = var.dkv_rg_name
 }
 
 data "azurerm_key_vault_secret" "getvmpass" {
-  name      = "vmpass"
+  name      = var.dkv_vmpass
   key_vault_id = data.azurerm_key_vault.dvinlabkv.id
 }
 
