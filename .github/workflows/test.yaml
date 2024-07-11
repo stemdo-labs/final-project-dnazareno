@@ -3,10 +3,11 @@ name: 'Test'
 on:  workflow_dispatch
     
 jobs:
-  start_ansible:
+  test:
     name: 'Start Ansible'
     runs-on: self-hosted
- 
+    permissions:
+      contents: read 
     defaults:
       run:
         shell: bash
