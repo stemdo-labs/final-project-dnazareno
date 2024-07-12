@@ -1,0 +1,48 @@
+name: Setup Self-hosted Runner (Unattended)
+on:
+  workflow_dispatch:
+    inputs:
+      UNATTENDED:
+        type: choice
+        options: 
+        - "yes"
+        - "no"
+        default: "yes"
+      REPLACE:
+        type: choice
+        options: 
+        - "yes"
+        - "no"
+        default: "yes"
+      LINUX_USER:
+        required: true
+        type: string
+      LINUX_USER_PASS:
+        required: true
+        type: string
+      LINUX_IP:
+        required: true
+        type: string
+      REPO_URL:
+        required: true
+        type: string
+      RUNNER_TOKEN:
+        required: true
+        type: string
+jobs:
+  setup-runner:
+    runs-on: ubuntu-latest
+    steps:
+#      - name: Checkout repository
+#        uses: actions/checkout@v2
+      
+      - name: Start Self-hosted Runner
+        uses: stemdo-labs/actions/start_linux_selfhosted_runner@main
+        with:
+          linuxUser: "${{ github.event.inputs.LINUX_USER }}"
+          linuxUserPass: "${{ github.event.inputs.LINUX_USER_PASS }}"
+          linuxIP: "${{ github.event.inputs.LINUX_IP }}"
+          unattended: "${{ github.event.inputs.UNATTENDED }}"
+          url: "${{ github.event.inputs.REPO_URL }}"
+          token: "${{ github.event.inputs.RUNNER_TOKEN }}"
+          replace: "${{ github.event.inputs.REPLACE }}"
