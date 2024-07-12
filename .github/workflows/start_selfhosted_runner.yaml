@@ -8,34 +8,34 @@ on:
         - "yes"
         - "no"
         default: "yes"
-        description: Disable interactive prompts for missing arguments. Defaults will be used for missing options
+        description: "UNATTENDED: Disable interactive prompts for missing arguments. Defaults will be used for missing options"
       REPLACE:
         type: choice
         options: 
         - "yes"
         - "no"
         default: "yes"
-        description: Replace any existing runner with the same name
+        description: "REPLACE: Replace any existing runner with the same name"
       LINUX_USER:
         required: true
         type: string
-        description: User used to access the virtual machine
+        description: "USER:User used to access the virtual machine"
       LINUX_USER_PASS:
         required: true
         type: string
-        description: Password of the user used to access the virtual machine
+        description: "USER PASSWORD: Password of the user used to access the virtual machine"
       LINUX_IP:
         required: true
         type: string
-        description: IP of the virtual machine
+        description: "IP: IP of the virtual machine"
       REPO_URL:
         required: true
         type: string
-        description: Repository to add the runner to. Required if unattended
+        description: "REPO URL: Repository to add the runner to. Required if unattended"
       RUNNER_TOKEN:
         required: true
         type: string
-        description: Registration token. Required if unattended
+        description: "RUNNER TOKEN: Registration token. Required if unattended"
 jobs:
   start-runner:
     runs-on: ubuntu-latest
