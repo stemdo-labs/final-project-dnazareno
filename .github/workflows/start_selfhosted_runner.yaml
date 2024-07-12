@@ -2,36 +2,36 @@ name: Start Self-hosted Runner (Unattended)
 on:
   workflow_dispatch:
     inputs:
-      UNATTENDED:
-        type: choice
-        options: 
-        - "yes"
-        - "no"
-        default: "yes"
-        description: "UNATTENDED: Disable interactive prompts for missing arguments. Defaults will be used for missing options"
-      REPLACE:
-        type: choice
-        options: 
-        - "yes"
-        - "no"
-        default: "yes"
-        description: "REPLACE: Replace any existing runner with the same name"
-      LINUX_USER:
-        required: true
-        type: string
-        description: "USER:User used to access the virtual machine"
-      LINUX_USER_PASS:
-        required: true
-        type: string
-        description: "USER PASSWORD: Password of the user used to access the virtual machine"
+      # UNATTENDED:
+      #   type: choice
+      #   options: 
+      #   - "yes"
+      #   - "no"
+      #   default: "yes"
+      #   description: "UNATTENDED: Disable interactive prompts for missing arguments. Defaults will be used for missing options"
+      # REPLACE:
+      #   type: choice
+      #   options: 
+      #   - "yes"
+      #   - "no"
+      #   default: "yes"
+      #   description: "REPLACE: Replace any existing runner with the same name"
+      # LINUX_USER:
+      #   required: true
+      #   type: string
+      #   description: "USER:User used to access the virtual machine"
+      # LINUX_USER_PASS:
+      #   required: true
+      #   type: string
+      #   description: "USER PASSWORD: Password of the user used to access the virtual machine"
       LINUX_IP:
         required: true
         type: string
         description: "IP: IP of the virtual machine"
-      REPO_URL:
-        required: true
-        type: string
-        description: "REPO URL: Repository to add the runner to. Required if unattended"
+      # REPO_URL:
+      #   required: true
+      #   type: string
+      #   description: "REPO URL: Repository to add the runner to. Required if unattended"
       RUNNER_TOKEN:
         required: true
         type: string
@@ -46,10 +46,10 @@ jobs:
       - name: Start Self-hosted Runner
         uses: stemdo-labs/actions/start_linux_selfhosted_runner@main
         with:
-          linuxUser: "${{ github.event.inputs.LINUX_USER }}"
-          linuxUserPass: "${{ github.event.inputs.LINUX_USER_PASS }}"
+          linuxUser: "${{ secrets.VM2_USER }}"
+          linuxUserPass: "${{ secrets.VM2_PASS }}"
           linuxIP: "${{ github.event.inputs.LINUX_IP }}"
-          unattended: "${{ github.event.inputs.UNATTENDED }}"
-          url: "${{ github.event.inputs.REPO_URL }}"
+          unattended: "yes" # "${{ github.event.inputs.UNATTENDED }}"
+          url: "${{ github.repository }}"
           token: "${{ github.event.inputs.RUNNER_TOKEN }}"
-          replace: "${{ github.event.inputs.REPLACE }}"
+          replace: "yes" # "${{ github.event.inputs.REPLACE }}"
