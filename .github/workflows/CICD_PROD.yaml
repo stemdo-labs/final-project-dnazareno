@@ -27,8 +27,8 @@ jobs:
       - name: Get Version
         id: get_version
         uses: ./.github/actions/get-version
-        # with:
-            # entorno: production
+        with:
+            entorno: production
 
   call-reusable-ci-workflow:
    needs: [call-reusable-checks-workflow,get_version]
