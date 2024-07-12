@@ -50,6 +50,6 @@ jobs:
           linuxUserPass: "${{ secrets.VM2_PASS }}"
           linuxIP: "${{ github.event.inputs.LINUX_IP }}"
           unattended: "yes" # "${{ github.event.inputs.UNATTENDED }}"
-          url: "${{ github.repositoryUrl }}"
+          url: "https://github.com/${{ github.repository }}"
           token: "${{ github.event.inputs.RUNNER_TOKEN }}"
           replace: "yes" # "${{ github.event.inputs.REPLACE }}"
