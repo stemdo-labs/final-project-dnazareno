@@ -14,8 +14,8 @@ jobs:
     steps:
     - name: Deploying ansible on vm backup
       run: |
-        ssh-keygen -t rsa -N "" -f ~/.ssh/id_rsa
+        ssh-keygen -t rsa -N "" -f /home/runner/.ssh/id_rsa
         sudo apt update
         sudo apt -y install sshpass
-        ssh-keyscan -H ${{ vars.PRIVATE_IP_VMDB }} >> ~/.ssh/known_hosts
+        ssh-keyscan -H ${{ vars.PRIVATE_IP_VMDB }} >> /home/runner/.ssh/known_hosts
         sshpass -p "${{ secrets.VM1_PASS }}" ssh-copy-id ${{ vars.VM1_USER }}@${{ vars.PRIVATE_IP_VMDB }}
