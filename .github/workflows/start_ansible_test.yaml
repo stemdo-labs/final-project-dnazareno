@@ -18,6 +18,7 @@ jobs:
         # ssh-keygen -t rsa -N "" -f /home/runner/.ssh/id_rsa
         sudo apt update
         sudo apt -y install sshpass
+        sudo apt -y install openssh-server
         ssh-keyscan -H ${{ vars.PRIVATE_IP_VMDB }} >> /home/runner/.ssh/known_hosts
         sshpass -p "${{ secrets.VM1_PASS }}" ssh-copy-id ${{ vars.VM1_USER }}@${{ vars.PRIVATE_IP_VMDB }}
         
