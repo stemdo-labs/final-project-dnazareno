@@ -21,7 +21,7 @@ jobs:
 #        sudo apt -y install mysql-server
 #        sudo apt -y install ansible
 #        curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
-#        ssh-keyscan -H ${{ vars.PRIVATE_IP_VMDB }} >> ~/.ssh/known_hosts
+#        # ssh-keyscan -H ${{ vars.PRIVATE_IP_VMDB }} >> ~/.ssh/known_hosts
 #        # sshpass -p "${{ secrets.VM1_PASS }}" ssh-copy-id ${{ vars.VM1_USER }}@${{ vars.PRIVATE_IP_VMDB }}
         
     - uses: actions/checkout@v4
