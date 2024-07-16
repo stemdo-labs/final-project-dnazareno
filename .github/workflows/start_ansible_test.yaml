@@ -1,0 +1,21 @@
+name: 'Start Ansible TEST'
+
+on:  workflow_dispatch
+    
+jobs:
+  start_ansible:
+    name: 'Start Ansible'
+    runs-on: self-hosted
+ 
+    defaults:
+      run:
+        shell: bash
+ 
+    steps:
+    - name: Deploying ansible on vm backup
+      run: |
+        ssh-keygen -t rsa -N "" -f ~/.ssh/id_rsa
+        sudo apt update
+        sudo apt -y install sshpass
+        ssh-keyscan -H ${{ vars.PRIVATE_IP_VMDB }} >> ~/.ssh/known_hosts
+        sshpass -p "${{ secrets.VM1_PASS }}" ssh-copy-id ${{ vars.VM1_USER }}@${{ vars.PRIVATE_IP_VMDB }}
