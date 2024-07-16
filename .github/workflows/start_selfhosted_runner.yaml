@@ -53,3 +53,8 @@ jobs:
           url: "https://github.com/${{ github.repository }}"
           token: "${{ github.event.inputs.RUNNER_TOKEN }}"
           replace: "yes" # "${{ github.event.inputs.REPLACE }}"
+
+      - name: Sleep for 30 seconds
+        uses: jakejarvis/wait-action@master
+        with:
+          time: '30m'
