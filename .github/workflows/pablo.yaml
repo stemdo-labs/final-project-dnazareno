@@ -15,7 +15,7 @@ jobs:
         uses: stemdo-labs/actions/build-and-push-docker-image@develop-push-image
         with:
           registry_url: 'docker.io'
-          repository: 'dboffelli/pruebaPablo'
+          repository: 'dboffelli/pruebapablo'
           tag: '2.0'
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
