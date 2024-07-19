@@ -1,4 +1,4 @@
-location = "UK South"
+location = "West Europe"
 rg_name = "rg-dnazareno"
 subnet_id = "/subscriptions/86f76907-b9d5-46fa-a39d-aff8432a1868/resourceGroups/final-project-common/providers/Microsoft.Network/virtualNetworks/vnet-common-bootcamp/subnets/sn-dnazareno"
 
